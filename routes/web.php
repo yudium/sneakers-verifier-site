@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('verification')->group(function() {
+    Route::get('new-request', function() {
+        return view('verification.new_request');
+    })->name('new_request');
+});
+
