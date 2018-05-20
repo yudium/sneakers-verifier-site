@@ -1,0 +1,13 @@
+#image-preview div {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+}
+
+#image-preview div img.preview {
+    width: 198px;
+    height: 198px;
+    border: 1px solid #000;
+}
+
