@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>@yield('title')</title>
+    <meta charset="UTF-8">
+    <title>@yield('title')</title>
+
+    @stack('scripts')
+    @stack('styles')
 </head>
 <body>
-  @yield('content')
+    @yield('content')
 </body>
 </html>
 
