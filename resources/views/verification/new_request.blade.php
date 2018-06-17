@@ -16,6 +16,14 @@
         action="{{ route('new_request') }}"
         method="post"
         enctype="multipart/form-data">
+        @csrf
+
+        @if (session('status') == 'FAIL')
+        <div class="alert alert-danger">
+            {{ session('message') }}
+        </div>
+        @endif
+
         <input id="sneakers_images" type="file" name="sneakers_images[]" multiple>
 
         <h4>Pastikan semua sudut sneakers ada di semua gambar Anda</h4>
