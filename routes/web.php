@@ -29,5 +29,7 @@ Route::middleware('auth')->group(function() {
 
         Route::post('new-request', 'VerificationController@addVerificationRequestImagesBased');
     });
+
+    Route::get('/user/{id}', 'UserController@profile');
 });
 
