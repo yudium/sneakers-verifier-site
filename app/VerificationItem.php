@@ -21,4 +21,9 @@ class VerificationItem extends Model
      * @var array
      */
     protected $hidden = [ ];
+
+    public function getStatusReviewAttribute($value)
+    {
+        return ($value) ? 'Sudah Direview' : 'Belum Direview';
+    }
 }
