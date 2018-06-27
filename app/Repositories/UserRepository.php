@@ -10,5 +10,14 @@ class UserRepository extends Repository
     {
         return 'App\User';
     }
+
+    /**
+     * @param string|array $params
+     */
+    public function withCount($params)
+    {
+        $this->model = $this->model->withCount($params);
+        return $this;
+    }
 }
 

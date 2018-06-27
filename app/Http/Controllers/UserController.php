@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 
@@ -19,17 +20,15 @@ class UserController extends Controller
      */
     public function profile($userid)
     {
-        $user = $this->user->find($userid);
+        Log::debug('profile() is started', ['userid' => $userid]);
+        $user = $this->user->withCount([
+            'verification_items as verification_items_count',
+            'verification_items as unreviewed_verification_items_count' => function ($query) {
+                $query->where('status_review', 0);
+            },
+        ])->find($userid);
 
-        $user_num_verif_item = $user->verification_items->count();
-        $user_num_unreviewed_verif_item = 
-            $user->verification_items()->where('status_review', 0)->count();
-
-        return view('user.profile', compact(
-            'user',
-            'user_num_verif_item',
-            'user_num_unreviewed_verif_item'
-        ));
+        return view('user.profile', compact('user'));
     }
 }
 
