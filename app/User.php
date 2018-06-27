@@ -29,6 +29,7 @@ class User extends Authenticatable
 
     public function verification_items()
     {
-        return $this->hasMany('App\VerificationItem');
+        return $this->hasMany('App\VerificationItem')
+                        ->orderBy('created_at', 'asc');
     }
 }
