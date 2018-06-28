@@ -22,6 +22,11 @@ class VerificationItem extends Model
      */
     protected $hidden = [ ];
 
+    public function verification_item_images()
+    {
+        return $this->hasMany('App\VerificationItemImage');
+    }
+
     public function getStatusReviewAttribute($value)
     {
         return ($value) ? 'Sudah Direview' : 'Belum Direview';
