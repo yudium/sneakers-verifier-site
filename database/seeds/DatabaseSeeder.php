@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             VerificationItemsTableSeeder::class,
             VerificationItemImagesTableSeeder::class,
+            VerificationItemLinksTableSeeder::class,
         ]);
     }
 }
