@@ -12,7 +12,7 @@ class VerificationItem extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'status_review', 'created_at','updated_at',
+        'user_id', 'type', 'status_review', 'created_at','updated_at',
     ];
 
     /**
@@ -27,8 +27,22 @@ class VerificationItem extends Model
         return $this->hasMany('App\VerificationItemImage');
     }
 
+    public function verification_item_link()
+    {
+        return $this->hasOne('App\VerificationItemLink');
+    }
+
     public function getStatusReviewAttribute($value)
     {
         return ($value) ? 'Sudah Direview' : 'Belum Direview';
+    }
+
+    public function getTypeAttribute($value)
+    {
+        /* mapping:
+         *      0 -> verification item versi gambar
+         *      1 -> verification item versi link
+         */
+        return ($value) ? 'Gambar' : 'Link';
     }
 }

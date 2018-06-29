@@ -17,6 +17,7 @@ $factory->define(App\VerificationItem::class, function (Faker $faker) {
     $dateTime = $faker->dateTime();
 
     return [
+        'type' => $faker->boolean,
         'status_review' => $faker->boolean,
         'created_at' => $dateTime,
         'updated_at' => $dateTime,
