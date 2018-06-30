@@ -23,11 +23,17 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout', 'Auth\LoginController@logout');
 
     Route::prefix('verification')->group(function() {
-        Route::get('new-request', function() {
-            return view('verification.new_request');
-        })->name('new_request');
+        Route::prefix('new-request')->group(function() {
+            Route::get('image-based', function() {
+                return view('verification.new_request_images_based');
+            });
+            Route::post('image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_images_based');
 
-        Route::post('new-request', 'VerificationController@addVerificationRequestImagesBased');
+            Route::get('link-based', function() {
+                return view('verification.new_request_link_based');
+            });
+            Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
+        });
     });
 
     Route::get('/user/{id}', 'UserController@profile');
