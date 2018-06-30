@@ -31,7 +31,7 @@ class VerificationController extends Controller
         }
         if (! $isAllValid) {
             Log::error('Upload image process is fail');
-            Log::debug('Redirecting user to previous page')
+            Log::debug('Redirecting user to previous page');
             return redirect()->back()->with([
                 'message' => 'There is a problem when uploading images',
                 'status'  => 'FAIL',
@@ -43,7 +43,7 @@ class VerificationController extends Controller
         ]);
         if ($validator->fails()) {
             Log::debug('Images is not valid.');
-            Log::debug('Redirecting user to previous page')
+            Log::debug('Redirecting user to previous page');
             return redirect()->back()->with([
                 'message' => 'All or some of your image is not valid.',
                 'status'  => 'FAIL',
