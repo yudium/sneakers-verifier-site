@@ -13,7 +13,7 @@
 @section('content')
     <form
         name="new_request"
-        action="{{ route('new_request') }}"
+        action="{{ route('new_request_images_based') }}"
         method="post"
         enctype="multipart/form-data">
         @csrf
