@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\VerificationItem;
+use App\VerificationItemLink;
+use App\Repositories\UserRepository;
 use Validator;
 
 class VerificationController extends Controller
 {
+    private $user;
+
+    public function __construct(UserRepository $user)
+    {
+        $this->user = $user;
+    }
+
     public function addVerificationRequestImagesBased(Request $req)
     {
         Log::debug('addVerificationRequestImagesBased() is started');
@@ -47,6 +58,32 @@ class VerificationController extends Controller
         }
 
         Log::debug('addVerificationRequestImagesBased() is ended');
+        // TODO: redirect pengguna ke laman detail request yang baru dibuat
+    }
+
+    public function addVerificationRequestLinkBased(Request $req)
+    {
+        Log::debug('addVerificationRequestLinkBased started');
+        /* I know I can do all this without user model and just simple
+         * assignment: `$verification_item->user_id = Auth::id()`.  But this is
+         * just more safe to ensure user is exists. Maybe I am paranoid.
+         * But who know about future risks?
+         */
+        $user = $this->user->find(Auth::id());
+        Log::debug('user model: ', ['user' => $user]);
+
+        $verification_item                = new VerificationItem;
+        $verification_item->type          = VerificationItem::TYPE_LINK_BASED;
+        $verification_item->status_review = VerificationItem::STATUS_UNREVIEWED;
+        $user->verification_items()->save($verification_item);
+        {
+            Log::debug('Inner block executed');
+            $verification_item_link       = new VerificationItemLink;
+            $verification_item_link->link = $req->link;
+            $verification_item->verification_item_link()->save($verification_item_link);
+        }
+
+        Log::debug('addVerificationRequestLinkBased ended');
         // TODO: redirect pengguna ke laman detail request yang baru dibuat
     }
 }
