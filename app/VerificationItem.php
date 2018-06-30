@@ -22,6 +22,18 @@ class VerificationItem extends Model
      */
     protected $hidden = [ ];
 
+    /**
+     * correspond to `type` column in table
+     */
+    const TYPE_IMAGES_BASED = 0;
+    const TYPE_LINK_BASED   = 1;
+
+    /**
+     * correspond to `status_review` column in table
+     */
+    const STATUS_REVIEWED   = 0;
+    const STATUS_UNREVIEWED = 1;
+
     public function verification_item_images()
     {
         return $this->hasMany('App\VerificationItemImage');
@@ -34,15 +46,11 @@ class VerificationItem extends Model
 
     public function getStatusReviewAttribute($value)
     {
-        return ($value) ? 'Sudah Direview' : 'Belum Direview';
+        return ($value == self::STATUS_REVIEWED) ? 'Sudah Direview' : 'Belum Direview';
     }
 
     public function getTypeAttribute($value)
     {
-        /* mapping:
-         *      0 -> verification item versi gambar
-         *      1 -> verification item versi link
-         */
-        return ($value) ? 'Gambar' : 'Link';
+        return ($value == self::TYPE_IMAGES_BASED) ? 'Gambar' : 'Link';
     }
 }
