@@ -20,6 +20,13 @@ class VerificationController extends Controller
         $this->user = $user;
     }
 
+    public function getReviewed()
+    {
+        $verification_items = VerificationItem::where('status_review', '=', VerificationItem::STATUS_REVIEWED)->paginate(6);
+
+        return view('verification.list', compact('verification_items'));
+    }
+
     public function addVerificationRequestImagesBased(Request $req)
     {
         Log::debug('addVerificationRequestImagesBased() is started');

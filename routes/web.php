@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function() {
 
         Route::get('delete/{id}', 'VerificationController@cancelRequest');
         Route::get('detail/{id}', 'VerificationController@detail');
+
+        Route::get('list', 'VerificationController@getReviewed');
     });
 
     Route::get('/user/{id}', 'UserController@profile');
