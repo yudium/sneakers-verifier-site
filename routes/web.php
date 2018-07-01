@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function() {
             });
             Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
         });
+
+        Route::get('detail/{id}', 'VerificationController@detail');
     });
 
     Route::get('/user/{id}', 'UserController@profile');
