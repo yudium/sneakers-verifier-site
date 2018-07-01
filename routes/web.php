@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function() {
             Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
         });
 
+        Route::get('delete/{id}', 'VerificationController@cancelRequest');
         Route::get('detail/{id}', 'VerificationController@detail');
     });
 

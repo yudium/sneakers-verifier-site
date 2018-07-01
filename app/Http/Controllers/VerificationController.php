@@ -125,4 +125,16 @@ class VerificationController extends Controller
 
         return view('verification.detail', compact('verification_item'));
     }
+
+    public function cancelRequest($id)
+    {
+        $verification_item = VerificationItem::find($id);
+        // automatically delete relation record from table verification_item_images or verification_item_link
+        $verification_item->delete();
+
+        return redirect()->back()->with([
+            'message' => 'Your data has been deleted',
+            'status'  => 'SUCCESS',
+        ]);
+    }
 }
