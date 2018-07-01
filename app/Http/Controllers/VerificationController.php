@@ -110,4 +110,19 @@ class VerificationController extends Controller
         Log::debug('addVerificationRequestLinkBased ended');
         // TODO: redirect pengguna ke laman detail request yang baru dibuat
     }
+
+    public function detail($id)
+    {
+        // TODO: use repository instead
+        $verification_item = VerificationItem::find($id);
+
+        if ($verification_item == null) {
+            return redirect()->back()->with([
+                'message' => 'Request cannot handled because the data is not found',
+                'status'  => 'FAIL',
+            ]);
+        }
+
+        return view('verification.detail', compact('verification_item'));
+    }
 }
