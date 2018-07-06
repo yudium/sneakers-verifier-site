@@ -2,6 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="{{ asset('/js/jquery.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/css/fontawesome-all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/sass/app.css') }}">
     <title>Snoort - @yield('title')</title>

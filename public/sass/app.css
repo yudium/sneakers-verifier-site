@@ -145,7 +145,7 @@
   .body .banner {
     position: relative;
     width: 80%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
     margin: auto;
     display: grid;
     display: -ms-grid;
@@ -156,15 +156,22 @@
       -ms-grid-column: 1; }
     .body .banner .mn-2 {
       grid-column: 2;
-      -ms-grid-column: 2; }
+      -ms-grid-column: 2;
+      position: relative;
+      width: 100%;
+      overflow: hidden; }
     .body .banner .meet {
       position: relative;
-      top: 50%;
-      -webkit-transform: translate(0, -50%);
-      -moz-transform: translate(0, -50%);
-      -ms-transform: translate(0, -50%);
-      -o-transform: translate(0, -50%);
-      transform: translate(0, -50%); }
+      width: 100%;
+      height: calc(100vh - 120px); }
+      .body .banner .meet .meet-ctn {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translate(0, -50%);
+        -moz-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+        -o-transform: translate(0, -50%);
+        transform: translate(0, -50%); }
     .body .banner .img {
       position: relative;
       top: 50%;
