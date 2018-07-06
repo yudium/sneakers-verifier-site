@@ -1,0 +1,23 @@
+@import "assets";
+@import "header";
+@import "body";
+@import "form";
+
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	font-family: "FontFirst", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+html {
+	background-color: #fff;
+}
+a {
+	text-decoration: none;
+	border: 0 #fff solid;
+}
+
+.img {
+	width: 100%;
+}

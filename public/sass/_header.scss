@@ -1,0 +1,65 @@
+.header {
+	position: relative;
+	width: 100%;
+	height: 75px;
+	background-color: $pos-color;
+	.place {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 45px;
+		padding: 15px 0;
+		background-color: $pos-color;
+		z-index: 50;
+		//box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+		.main {
+			position: relative;
+			width: $max-width;
+			height: 45px;
+			margin: auto;
+			@include grid_2x(150px, 1fr);
+			.mn-1 {
+				@include column_1();
+			}
+			.mn-2 {
+				@include column_2();
+			}
+			.logo {
+				line-height: 40px;
+			}
+			.menu-ctn {
+				display: inline-block;
+				vertical-align: top;
+			}
+			.menu-init {
+				position: absolute;
+				right: 0;
+			}
+			.menu-header {
+				position: relative;
+				cursor: pointer;
+				margin-left: 30px;
+				li {
+					list-style: none;
+					display: inline-block;
+					text-transform: uppercase;
+					height: 45px;
+					line-height: 45px;
+					padding: 0 15px;
+					color: $min-color;
+					font-weight: 600;
+					font-size: 14px;
+					&:hover {
+						color: $int-color;
+						cursor: pointer;
+					}
+					&.active {
+						color: $int-color;
+						//border-bottom: 3px $int-color solid;
+					}
+				}
+			}
+		}
+	}
+}

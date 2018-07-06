@@ -1,0 +1,60 @@
+.body {
+	position: relative;
+	width: $max-width;
+	margin: auto;
+	padding: 20px 0;
+	.banner {
+		position: relative;
+		width: 80%;
+		height: calc(100vh - 100px);
+		margin: auto;
+		@include grid_2x(400px, 1fr);
+		.mn-1 {
+			@include column_1();
+		}
+		.mn-2 {
+			@include column_2();
+		}
+		.meet {
+			@include post_top();
+		}
+		.img {
+			@include post_top();
+		}
+	}
+	.content {
+		position: relative;
+		width: 80%;
+		margin: auto;
+		padding: 80px 0;
+		text-align: center;
+		&.ctn {
+			text-align: left;
+			.mn-1 {
+				@include column_1();
+			}
+			.mn-2 {
+				@include column_2();
+			}
+			.meet {
+				@include post_top();
+			}
+		}
+		&.ctn-right {
+			@include grid_2x(400px, 1fr);
+		}
+		&.ctn-left {
+			@include grid_2x(1fr, 400px);
+		}
+	}
+	.toGo {
+		position: fixed;
+		width: 100%;
+		left: 0;
+		margin: auto;
+		bottom: 40px;
+		.target {
+			@include post_center();
+		}
+	}
+}

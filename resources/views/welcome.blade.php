@@ -1,95 +1,156 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('title', 'Welcome to Snoort')
+@section('content')
+<div>
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+    			<h1 class="ctn-main-font ctn-min-color ctn-big">
+    				Hi there I'm Snoort.
+    			</h1>
+    			<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+    				I can help you to check an original sneakers.
+    			</p>
+    			<!--
+    			<p class="ctn-main-font ctn-min-color ctn-20px padding-10px">
+    				Let's get started.
+    			</p>
+    			<div>
+    				<a href="{{ url('/login') }}">
+						<button class="btn btn-primary-color" style="margin-right: 10px;">
+			    			Login
+			    		</button>
+			    	</a>
+			    	<a href="{{ url('/register') }}">
+			    		<button class="btn btn-main-color">
+			    			Register
+			    		</button>
+			    	</a>
+    			</div>
+    		-->
+    		</div>
+    	</div>
+    </div>
 
-        <title>Laravel</title>
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+	    		<h1 class="ctn-main-font ctn-min-color ctn-big">
+	   				How this is works?
+	    		</h1>
+	    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+	    			We check your sneakers with our professional verificators that have been sertificated.
+	    		</p>
+	    	</div>
+    	</div>
+    </div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+	    		<h1 class="ctn-main-font ctn-min-color ctn-big">
+	   				Is it easy to use?
+	    		</h1>
+	    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+	    			Ya, you just send me some pictures or links of your sneakers, and we would check your sneakers.
+	    		</p>
+	    	</div>
+    	</div>
+    </div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+	    		<h1 class="ctn-main-font ctn-min-color ctn-big">
+	   				Is it trusted?
+	    		</h1>
+	    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+	    			Ofcourse, there are more then hundred verificators and online shops that work with us. So, you do not be affraid because it will be trusted.
+	    		</p>
+	    	</div>
+    	</div>
+    </div>
 
-            .full-height {
-                height: 100vh;
-            }
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+	    		<h1 class="ctn-main-font ctn-min-color ctn-big">
+	   				What would you get?
+	    		</h1>
+	    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+	    			We will save your time and money. You can get original sneakers that has been checked by our proffesional verificators.
+	    		</p>
+	    	</div>
+    	</div>
+    </div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+	    		<h1 class="ctn-main-font ctn-min-color ctn-big">
+	   				And it's all free for you
+	    		</h1>
+	    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+	    			We do not take your money to check your sneakers in here, it's all free for you.
+	    		</p>
+	    	</div>
+    	</div>
+    </div>
 
-            .position-ref {
-                position: relative;
-            }
+    <div class="banner">
+    	<div class="mn-1">
+    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    	</div>
+    	<div class="mn-2">
+    		<div class="meet">
+	    		<h1 class="ctn-main-font ctn-min-color ctn-big">
+	   				So, let's get started
+	    		</h1>
+	    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
+	    			Do not waiting too long...
+	    		</p>
+	    		<div class="padding-top-5px">
+	    			<a href="{{ url('/login') }}">
+						<button class="btn btn-primary-color" style="margin-right: 10px;">
+			    			Login
+			    		</button>
+			    	</a>
+			    	<a href="{{ url('/register') }}">
+			    		<button class="btn btn-main-color">
+			    			Register
+			    		</button>
+			    	</a>
+	    		</div>
+	    	</div>
+    	</div>
+    </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+    <!--
+    <div class="toGo">
+    	<button class="target btn btn-main-color btn-radius">
+    		<span>How this is works?</span>
+    		<span class="fa fa-lg fa-angle-down"></span>
+    	</button>
+    </div>
+	-->
+</div>
+@endsection
