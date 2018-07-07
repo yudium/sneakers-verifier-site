@@ -44,3 +44,23 @@ Route::middleware('auth')->group(function() {
     Route::get('/user/{id}', 'UserController@profile');
 });
 
+
+
+/**
+ * -----------------------------------------------------------------------------
+ * Verificator route area
+ * -----------------------------------------------------------------------------
+ */
+Route::namespace('Verificator')->group(function() {
+    Route::prefix('verificator')->group(function() {
+        Route::middleware('auth_verificator')->group(function() {
+            Route::get('logout', 'Auth\LoginController@logout');
+        });
+
+        Route::middleware('verificator_guest')->group(function() {
+            Route::get('login', 'Auth\LoginController@showLoginForm');
+            Route::post('login', 'Auth\LoginController@login')->name('verificator.login');
+        });
+    });
+});
+
