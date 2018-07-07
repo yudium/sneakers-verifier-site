@@ -53,10 +53,16 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'auth_verificator' => \App\Http\Middleware\RedirectIfNotVerificator::class,
+        'auth_admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'verificator_guest' =>  \App\Http\Middleware\RedirectIfVerificatorAuthenticated::class,
+        'admin_guest' =>  \App\Http\Middleware\RedirectIfAdminAuthenticated::class,
+
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
     ];

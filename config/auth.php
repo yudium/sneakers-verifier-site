@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'web_verificator' => [
+            'driver' => 'session',
+            'provider' => 'verificators',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -68,6 +73,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'verificators' => [
+            'driver' => 'eloquent',
+            'model' => App\Verificator::class,
         ],
 
         // 'users' => [
