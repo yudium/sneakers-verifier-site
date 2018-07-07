@@ -13,11 +13,23 @@
 
 Auth::routes();
 
+
+/**
+ * -----------------------------------------------------------------------------
+ * Public route area
+ * -----------------------------------------------------------------------------
+ */
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('welcome');
 });
 
+
+/**
+ * -----------------------------------------------------------------------------
+ * User route area
+ * -----------------------------------------------------------------------------
+ */
 Route::middleware('auth')->group(function() {
     // TODO: pakai form POST method biar aman (ref: https://laracasts.com/discuss/channels/laravel/laravel-53-logout-methodnotallowed)
     Route::get('/logout', 'Auth\LoginController@logout');
