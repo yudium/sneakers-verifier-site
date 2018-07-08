@@ -136,6 +136,14 @@ class VerificationController extends Controller
     public function cancelRequest($id)
     {
         $verification_item = VerificationItem::find($id);
+
+        if ($verification_item->review) {
+            return redirect()->back()->with([
+                'message' => 'Your data has been reviewed so it cannot be deleted',
+                'status'  => 'FAIL',
+            ]);
+        }
+
         // automatically delete relation record from table verification_item_images or verification_item_link
         $verification_item->delete();
 
