@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/verification/list', 'VerificationController@getReviewed');
 
 
 /**
@@ -50,7 +51,6 @@ Route::middleware('auth')->group(function() {
         Route::get('delete/{id}', 'VerificationController@cancelRequest');
         Route::get('detail/{id}', 'VerificationController@detail');
 
-        Route::get('list', 'VerificationController@getReviewed');
     });
 
     Route::get('/user/{id}', 'UserController@profile');
