@@ -67,6 +67,9 @@ Route::namespace('Verificator')->group(function() {
     Route::prefix('verificator')->group(function() {
         Route::middleware('auth_verificator')->group(function() {
             Route::get('logout', 'Auth\LoginController@logout');
+
+            Route::get('review/form/{verification_item_id}', 'ReviewController@showForm');
+            Route::post('review/form/{verification_item_id}', 'ReviewController@saveReview');
         });
 
         Route::middleware('verificator_guest')->group(function() {
