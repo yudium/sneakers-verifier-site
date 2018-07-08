@@ -44,6 +44,11 @@ class VerificationItem extends Model
         return $this->hasOne('App\VerificationItemLink');
     }
 
+    public function review()
+    {
+        return $this->hasOne('App\Review');
+    }
+
     public function getStatusReviewAttribute($value)
     {
         return ($value == self::STATUS_REVIEWED) ? 'Sudah Direview' : 'Belum Direview';
