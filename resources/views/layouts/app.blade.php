@@ -39,8 +39,12 @@
 				<div class="mn-2">
 					<div class="menu-ctn">
 						<ul class="menu-header">
-						    <li class="active">Home Feeds</li>
-						    <li>Sneakers</li>
+							<a href="{{ url('/') }}">
+						    	<li>Home Feeds</li>
+						    </a>
+						    <a href="{{ url('/verification/list') }}">
+						    	<li>Sneakers</li>
+						    </a>
 						    <li>Verificators</li>
 						</ul>
 					</div>

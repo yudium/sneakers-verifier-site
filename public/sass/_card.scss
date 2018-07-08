@@ -1,0 +1,53 @@
+.card-item {
+	position: relative;
+	width: calc(100% - 30px);
+	padding: 15px;
+	border: 1px rgba(0,0,0,0.1) solid;
+	margin: 15px 0;
+	margin-bottom: 30px;
+	border-radius: 7px;
+	overflow: hidden;
+	&.ci-image {
+		.top {
+			position: relative;
+			width: calc(100% - 2px);
+			border: 1px rgba(0,0,0,0.1) solid;
+			border-radius: 7px;
+			overflow: hidden;
+			cursor: pointer;
+			background-color: rgba(225,225,225,0.34);
+			@include grid_3x(1fr, 1fr, 1fr);
+			.cl-1 {
+				@include column_1();
+			}
+			.cl-2 {
+				@include column_2();
+			}
+			.cl-3 {
+				@include column_3();
+			}
+			&:hover {
+				background-color: rgba(225,225,225,0.54);
+			}
+		}
+	}
+	&.ci-link {
+		.top {
+			.link {
+				position: relative;
+				width: calc(100% - 32px);
+				padding: 15px;
+				border-radius: 7px;
+				border: 1px rgba(0,0,0,0.1) solid;
+				background-color: rgba(225,225,225,0.34);
+				color: $min-color;
+				&:hover {
+					background-color: rgba(225,225,225,0.54);
+				}
+			}
+		}
+	}
+	.mid {
+		padding: 15px 0 0 0;
+	}
+}
