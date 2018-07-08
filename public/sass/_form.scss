@@ -52,6 +52,20 @@
 		}
 	}
 }
+
+.cck {
+	position: relative;
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+	&.cck-min-color {
+		border: 1px $int-color solid;
+		color: $int-color;
+	}
+}
+
 .slc {
 	width: calc(100%);
 	height: 45px;

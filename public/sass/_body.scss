@@ -67,4 +67,18 @@ $banner-height: calc(100vh - 120px);
 			@include post_center();
 		}
 	}
+	.login-container {
+		position: relative;
+		width: 500px;
+		margin: auto;
+		.lc-block {
+			margin-bottom: 15px;
+			.ctn-main-font {
+				margin-bottom: 5px;
+			}
+		}
+		.lc-right {
+			text-align: right;
+		}
+	}
 }
