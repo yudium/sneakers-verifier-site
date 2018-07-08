@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -137,20 +138,29 @@ class VerificationController extends Controller
     {
         $verification_item = VerificationItem::find($id);
 
-        if ($verification_item->review) {
+        if (Gate::allows('delete-verification-item', $verification_item))
+        {
+            if ($verification_item->review) {
+                return redirect()->back()->with([
+                    'message' => 'Your data has been reviewed so it cannot be deleted',
+                    'status'  => 'FAIL',
+                ]);
+            }
+
+            // automatically delete relation record from table verification_item_images or verification_item_link
+            $verification_item->delete();
+
             return redirect()->back()->with([
-                'message' => 'Your data has been reviewed so it cannot be deleted',
+                'message' => 'Your data has been deleted',
+                'status'  => 'SUCCESS',
+            ]);
+        }
+        else {
+            return redirect()->back()->with([
+                'message' => 'You not allowed to delete this item',
                 'status'  => 'FAIL',
             ]);
         }
-
-        // automatically delete relation record from table verification_item_images or verification_item_link
-        $verification_item->delete();
-
-        return redirect()->back()->with([
-            'message' => 'Your data has been deleted',
-            'status'  => 'SUCCESS',
-        ]);
     }
 
     public function showReviewResult($id)

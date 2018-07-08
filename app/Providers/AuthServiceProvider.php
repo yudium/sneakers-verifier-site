@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('delete-verification-item', function($user, $verification_item){
+            return $user->id == $verification_item->user_id;
+        });
     }
 }
