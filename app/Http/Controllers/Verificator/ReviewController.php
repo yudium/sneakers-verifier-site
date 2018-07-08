@@ -60,6 +60,9 @@ class ReviewController extends Controller
         }
         $verification_item->review()->save($review);
 
+        $verification_item->status_review = VerificationItem::STATUS_REVIEWED;
+        $verification_item->save();
+
         // TODO: redirect kemana, tentukan.
         return;
     }
