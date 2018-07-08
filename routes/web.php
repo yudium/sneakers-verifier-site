@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/verification/list', 'VerificationController@getReviewed');
+Route::get('/verification/review-result/{id}', 'VerificationController@showReviewResult');
 
 
 /**

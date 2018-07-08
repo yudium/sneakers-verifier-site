@@ -144,4 +144,11 @@ class VerificationController extends Controller
             'status'  => 'SUCCESS',
         ]);
     }
+
+    public function showReviewResult($id)
+    {
+        $verification_item = VerificationItem::find($id);
+
+        return view('verification.review_result', compact('verification_item'));
+    }
 }
