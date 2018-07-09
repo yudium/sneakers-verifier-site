@@ -29,34 +29,31 @@ Route::get('/verification/review-result/{id}', 'VerificationController@showRevie
 
 /**
  * -----------------------------------------------------------------------------
- * User route area
+ * Logged In User route area
  * -----------------------------------------------------------------------------
  */
 Route::middleware('auth')->group(function() {
-    // TODO: pakai form POST method biar aman (ref: https://laracasts.com/discuss/channels/laravel/laravel-53-logout-methodnotallowed)
-    Route::get('/logout', 'Auth\LoginController@logout');
-    Route::get('/change', function() {
-        $user = Auth::user();
-        return view('user.change', compact('user'));
+    Route::prefix('user')->group(function() {
+        // TODO: pakai form POST method biar aman (ref: https://laracasts.com/discuss/channels/laravel/laravel-53-logout-methodnotallowed)
+        Route::get('/logout', 'Auth\LoginController@logout');
+        Route::get('/change', function() {
+            return view('user.change', ['user' => Auth::user()]);
+        });
+        Route::post('/change', 'UserController@change');
     });
-    Route::post('/change', 'UserController@change');
 
     Route::prefix('verification')->group(function() {
-        Route::prefix('new-request')->group(function() {
-            Route::get('image-based', function() {
-                return view('verification.new_request_images_based');
-            });
-            Route::post('image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_images_based');
-
-            Route::get('link-based', function() {
-                return view('verification.new_request_link_based');
-            });
-            Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
+        Route::get('new-request/image-based', function() {
+            return view('verification.new_request_images_based');
         });
+        Route::get('new-request/link-based', function() {
+            return view('verification.new_request_link_based');
+        });
+        Route::post('new-request/image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_images_based');
+        Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
 
         Route::get('delete/{id}', 'VerificationController@cancelRequest');
         Route::get('detail/{id}', 'VerificationController@detail');
-
     });
 
     Route::get('/user/{id}', 'UserController@profile');
@@ -69,8 +66,7 @@ Route::middleware('auth')->group(function() {
  * Verificator route area
  * -----------------------------------------------------------------------------
  */
-Route::namespace('Verificator')->group(function() {
-    Route::prefix('verificator')->group(function() {
+Route::namespace('Verificator')->prefix('verificator')->group(function() {
         Route::middleware('auth_verificator')->group(function() {
             Route::get('logout', 'Auth\LoginController@logout');
 
@@ -82,6 +78,5 @@ Route::namespace('Verificator')->group(function() {
             Route::get('login', 'Auth\LoginController@showLoginForm');
             Route::post('login', 'Auth\LoginController@login')->name('verificator.login');
         });
-    });
 });
 
