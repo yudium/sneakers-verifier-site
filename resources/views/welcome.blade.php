@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Welcome to Snoort')
+@section('title', 'Sneaker Checker')
 @section('content')
 <script type="text/javascript">
 	function toLeft() {
@@ -24,7 +24,7 @@
 <div >
     <div class="banner">
     	<div class="mn-1">
-    		<img src="{{ asset('/img/yeti.gif') }}" alt="welcome" class="img">
+    		<img src="{{ asset('/img/yeti.gif') }}" class="img">
     	</div>
     	<div class="mn-2 bn-place">
     		<div class="meet">
@@ -126,10 +126,10 @@
 	    	<div class="meet">
 	    		<div class="meet-ctn">
 		    		<h1 class="ctn-main-font ctn-min-color ctn-big">
-		   				So, let's get started
+		   				Let's get started
 		    		</h1>
 		    		<p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
-		    			Do not waiting too long...
+		    			Do not waiting too long, check your sneakers today...
 		    		</p>
 		    		<div class="padding-top-5px">
 		    			<a href="{{ url('/login') }}">

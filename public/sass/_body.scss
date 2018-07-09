@@ -57,6 +57,11 @@ $banner-height: calc(100vh - 120px);
 			@include grid_2x(1fr, 400px);
 		}
 	}
+	.list {
+		position: relative;
+		width: 700px;
+		margin: auto;
+	}
 	.toGo {
 		position: fixed;
 		width: 100%;
@@ -65,6 +70,57 @@ $banner-height: calc(100vh - 120px);
 		bottom: 40px;
 		.target {
 			@include post_center();
+		}
+	}
+	.login-container {
+		position: relative;
+		width: 500px;
+		margin: auto;
+		.lc-block {
+			margin-bottom: 15px;
+			.ctn-main-font {
+				margin-bottom: 5px;
+			}
+		}
+		.lc-right {
+			text-align: right;
+		}
+	}
+	.pagination {
+		position: relative;
+		width: 100%;
+		text-align: center;
+		padding: 20px 0;
+		cursor: default;
+		.page-item {
+			position: relative;
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+			border-radius: 100%;
+			display: inline-block;
+			list-style: none;
+			font-size: 16px;
+			font-weight: 600;
+			a {
+				display: block;
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+				border-radius: 100%;
+				color: $min-color;
+				&:hover {
+					background-color: rgba(225,225,225,0.54);
+					color: $min-color;
+				}
+			}
+			&.active {
+				background-color: $int-color;
+				color: $pos-color;
+			}
+			&.disabled {
+				color: $err-color;
+			}
 		}
 	}
 }

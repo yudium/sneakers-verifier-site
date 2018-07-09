@@ -6,6 +6,7 @@ $min-color: rgba(0,0,0,0.54);
 $sek-color: rgba(0,0,0,0.34);
 $pos-color: #fff;
 $int-color: #3fa9f5;
+$err-color: #ff0000;
 
 //grid
 @mixin grid_4x($col1, $col2, $col3, $col4) {
@@ -149,6 +150,9 @@ $int-color: #3fa9f5;
 	}
 	&.ctn-int-color {
 		color: $int-color;
+	}
+	&.ctn-err-color {
+		color: $err-color;
 	}
 	&.ctn-white-color {
 		color: #fff;

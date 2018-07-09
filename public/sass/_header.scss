@@ -12,7 +12,7 @@
 		padding: 15px 0;
 		background-color: $pos-color;
 		z-index: 50;
-		//box-shadow: 0 0 10px 2px rgba(0,0,0,0.1);
+		border-bottom: 1px rgba(0,0,0,0.1) solid;
 		.main {
 			position: relative;
 			width: $max-width;
