@@ -34,4 +34,9 @@ class User extends Authenticatable
         return $this->hasMany('App\VerificationItem')
                         ->orderBy('created_at', 'asc');
     }
+
+    public function getPhotoPathAttribute()
+    {
+        return self::PHOTO_PROFILE_DIR.'/'.$this->photo;
+    }
 }
