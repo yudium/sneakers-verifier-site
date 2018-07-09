@@ -35,6 +35,11 @@ Route::get('/verification/review-result/{id}', 'VerificationController@showRevie
 Route::middleware('auth')->group(function() {
     // TODO: pakai form POST method biar aman (ref: https://laracasts.com/discuss/channels/laravel/laravel-53-logout-methodnotallowed)
     Route::get('/logout', 'Auth\LoginController@logout');
+    Route::get('/change', function() {
+        $user = Auth::user();
+        return view('user.change', compact('user'));
+    });
+    Route::post('/change', 'UserController@change');
 
     Route::prefix('verification')->group(function() {
         Route::prefix('new-request')->group(function() {
