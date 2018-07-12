@@ -17,6 +17,13 @@
             <p>Jumlah pengajuan: {{ $user->verification_items_count }}</p>
             <p>Jumlah yang belum direview: {{ $user->unreviewed_verification_items_count }}</p>
         </div>
+
+        @if ($user->id == Auth::user()->id)
+        <form method="post" action="{{ route('user_delete') }}">
+            @csrf
+            <button type="submit">Hapus Akun</button>
+        </form>
+        @endif
     </div>
 
     <div id="main-container">

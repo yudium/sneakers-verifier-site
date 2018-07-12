@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function() {
             return view('user.change', ['user' => Auth::user()]);
         });
         Route::post('/change', 'UserController@change');
+        Route::post('/delete', 'UserController@delete')->name('user_delete');
     });
 
     Route::prefix('verification')->group(function() {

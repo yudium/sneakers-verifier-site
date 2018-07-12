@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
@@ -107,5 +108,16 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with($return_message);
+    }
+
+    public function delete(Request $req)
+    {
+        $user = Auth::user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        return redirect('/');
     }
 }
