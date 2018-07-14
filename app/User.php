@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    const PHOTO_PROFILE_DIR = 'user_photo_profile';
+    const PHOTO_PROFILE_DIR = 'storage/user_photo_profile';
 
     public function verification_items()
     {
