@@ -11,7 +11,7 @@
     </p>
 
     <div id="left-container">
-        <img id="photo-profile" src="{{ asset('storage/user_photo_profile/'.$user->photo) }}" alt="Foto pengguna">
+        <img id="photo-profile" src="{{ asset($user->photo_path) }}" alt="Foto pengguna">
         <div id="user-information">
             <p>Tanggal bergabung: {{ $user->created_at }}</p>
             <p>Jumlah pengajuan: {{ $user->verification_items_count }}</p>
