@@ -10,7 +10,7 @@
         @csrf
 
         <div id="image-preview">
-            <img src="{{ asset('storage/'.$user->photo_path) }}" alt="Photo Profile">
+            <img src="{{ asset($user->photo_path) }}" alt="Photo Profile">
         </div>
         <input id="photo-profile-field" type="file" name="photo"> <br>
 
