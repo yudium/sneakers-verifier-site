@@ -33,6 +33,8 @@ class UserController extends Controller
             },
         ])->find($userid);
 
+        $user->verification_items = $user->verification_items()->paginate(6);
+
         return view('user.profile', compact('user'));
     }
 

@@ -66,6 +66,7 @@
                 @endif
             @endforeach
         </div>
+        {{ $user->verification_items->links() }}
     </div>
 @endsection
 
