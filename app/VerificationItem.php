@@ -25,7 +25,7 @@ class VerificationItem extends Model
     /**
      * correspond to `type` column in table
      */
-    const TYPE_IMAGES_BASED = 0;
+    const TYPE_IMAGE_BASED = 0;
     const TYPE_LINK_BASED   = 1;
 
     /**
@@ -56,6 +56,6 @@ class VerificationItem extends Model
 
     public function getTypeAttribute($value)
     {
-        return ($value == self::TYPE_IMAGES_BASED) ? 'Gambar' : 'Link';
+        return ($value == self::TYPE_IMAGE_BASED) ? 'Gambar' : 'Link';
     }
 }

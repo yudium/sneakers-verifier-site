@@ -45,12 +45,12 @@ Route::middleware('auth')->group(function() {
 
     Route::prefix('verification')->group(function() {
         Route::get('new-request/image-based', function() {
-            return view('verification.new_request_images_based');
+            return view('verification.new_request_image_based');
         });
         Route::get('new-request/link-based', function() {
             return view('verification.new_request_link_based');
         });
-        Route::post('new-request/image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_images_based');
+        Route::post('new-request/image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_image_based');
         Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
 
         Route::get('delete/{id}', 'VerificationController@cancelRequest');

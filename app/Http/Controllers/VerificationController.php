@@ -76,7 +76,7 @@ class VerificationController extends Controller
         $user = $this->user->find(Auth::id());
 
         $verification_item                = new VerificationItem;
-        $verification_item->type          = VerificationItem::TYPE_IMAGES_BASED;
+        $verification_item->type          = VerificationItem::TYPE_IMAGE_BASED;
         $verification_item->status_review = VerificationItem::STATUS_UNREVIEWED;
         $user->verification_items()->save($verification_item);
         {
