@@ -28,6 +28,7 @@ class User extends Authenticatable
     ];
 
     const PHOTO_PROFILE_DIR = 'storage/user_photo_profile';
+    const PHOTO_DEFAULT     = 'storage/images/default_photo.svg';
 
     public function verification_items()
     {
@@ -37,6 +38,9 @@ class User extends Authenticatable
 
     public function getPhotoPathAttribute()
     {
+        if (!$this->photo) {
+            return self::PHOTO_DEFAULT;
+        }
         return self::PHOTO_PROFILE_DIR.'/'.$this->photo;
     }
 }
