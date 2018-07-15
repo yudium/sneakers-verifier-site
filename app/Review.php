@@ -12,7 +12,7 @@ class Review extends Model
      * @var array
      */
     protected $fillable = [
-        'verification_item_id', 'note', 'status', 'created_at','updated_at',
+        'reviewer_id', 'verification_item_id', 'note', 'status', 'created_at','updated_at',
     ];
 
     /**
