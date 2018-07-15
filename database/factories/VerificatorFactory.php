@@ -43,5 +43,6 @@ $factory->define(App\Verificator::class, function (Faker $faker) {
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => NULL,
         'photo' => $images[$image_idx],
+        'biography' => $faker->paragraphs($nb = 5, $asText = true),
     ];
 });
