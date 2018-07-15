@@ -6,7 +6,7 @@ $banner-height: calc(100vh - 120px);
 	padding: 20px 0;
 	.banner {
 		position: relative;
-		width: 80%;
+		width: 100%;
 		height: $banner-height;
 		margin: auto;
 		@include grid_2x(400px, 1fr);
@@ -59,8 +59,16 @@ $banner-height: calc(100vh - 120px);
 	}
 	.list {
 		position: relative;
-		width: 700px;
+		width: 100%;
 		margin: auto;
+
+		display: flex;
+	    flex-wrap: wrap;
+
+	    .card-item {
+	    	width: (($max-width / 2) - 52);
+	    	margin: 0 10px 20px 10px;
+	    }
 	}
 	.toGo {
 		position: fixed;

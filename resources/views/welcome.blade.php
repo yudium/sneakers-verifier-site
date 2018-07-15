@@ -132,16 +132,23 @@
 		    			Do not waiting too long, check your sneakers today...
 		    		</p>
 		    		<div class="padding-top-5px">
-		    			<a href="{{ url('/login') }}">
-							<button class="btn btn-primary-color" style="margin-right: 10px;">
-				    			Login
+			    		@if (Auth::id())
+			    			<button class="btn btn-radius btn-main-color">
+				    			<span class="fa fa-lg fa-plus-circle"></span>
+				    			<span>Verification</span>
 				    		</button>
-				    	</a>
-				    	<a href="{{ url('/register') }}">
-				    		<button class="btn btn-main-color">
-				    			Register
-				    		</button>
-				    	</a>
+			    		@else
+			    			<a href="{{ url('/login') }}">
+								<button class="btn btn-primary-color" style="margin-right: 10px;">
+					    			Login
+					    		</button>
+					    	</a>
+					    	<a href="{{ url('/register') }}">
+					    		<button class="btn btn-main-color">
+					    			Register
+					    		</button>
+					    	</a>
+					    @endif
 		    		</div>
 		    	</div>
 	    	</div>

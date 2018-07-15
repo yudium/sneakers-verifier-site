@@ -6,22 +6,7 @@
 
     <div class="list">
         @foreach ($verification_items as $verification_item)
-            <!--
-            Ada 2 tipe verifikasi item.
-                (1) Image-based
-                (2) Link-based
-
-            Kedua tipe ini punya tampilan yang sedikit berbeda untuk box div.list-item
-            Perbedaan dari segi tampilan:
-                (-) Untuk tipe gambar menampilkan 3 gambar. Sedangkan link, hanya teks link
-                (-) Untuk tipe gambar menggunakan teks `tanggal upload`. Sedangkan link, `tanggal submit`
-
-            NOTE: Lihat mockup file yang ada di directory /mockup 
-            -->
             @if ($verification_item->type == 'Gambar')
-            <!-- kotak item... setiap item berisi 3 gambard dan keterangan tanggal upload + status review -->
-            <!-- storage gambar storate/ atau storage/app/public/ -->
-            <!-- gambar tidak muncul -->
             <div class="card-item ci-image">
                 <a class="ctn-main-font ctn-mikro" href="{{ url('/verification/review-result/'.$verification_item->id) }}">
                     <div class="top">

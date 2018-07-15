@@ -3,10 +3,13 @@
 	width: calc(100% - 30px);
 	padding: 15px;
 	border: 1px rgba(0,0,0,0.1) solid;
-	margin: 15px 0;
+	margin-top: 10px;
 	margin-bottom: 30px;
 	border-radius: 7px;
 	overflow: hidden;
+	&:hover {
+		background-color: rgba(225,225,225,0.34);
+	}
 	&.ci-image {
 		.top {
 			position: relative;
@@ -48,6 +51,42 @@
 		}
 	}
 	.mid {
-		padding: 15px 0 0 0;
+		padding: 10px 0 0 0;
+	}
+}
+
+.frame-profile {
+	position: relative;
+	width: 1000px;
+	margin: auto;
+	@include grid_2x(300px, 1fr);
+	.fp-block {
+		/*position: fixed;
+		width: 250px;*/
+		width: calc(100% - 30px);
+		padding: 15px;
+		border-radius: 7.5px;
+		margin-top: 10px;
+		background-color: rgba(225,225,225,0.34);
+		.top {
+			text-align: center;
+			.image {
+				margin: auto;
+			}
+		}
+		.mid {
+			padding: 10px 0 15px 0;
+			line-height: 1.5;
+		}
+	}
+	.fp-left {
+		@include column_1();
+		width: calc(100% - 20px);
+		padding: 0 10px;
+	}
+	.fp-right {
+		@include column_2();
+		width: calc(100% - 30px);
+		padding: 0 15px;
 	}
 }

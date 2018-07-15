@@ -95,11 +95,10 @@
     height: 45px;
     padding: 15px 0;
     background-color: #fff;
-    z-index: 50;
-    border-bottom: 1px rgba(0, 0, 0, 0.1) solid; }
+    z-index: 50; }
     .header .place .main {
       position: relative;
-      width: 1200px;
+      width: 1000px;
       height: 45px;
       margin: auto;
       display: grid;
@@ -142,12 +141,12 @@
 
 .body {
   position: relative;
-  width: 1200px;
+  width: 1000px;
   margin: auto;
   padding: 20px 0; }
   .body .banner {
     position: relative;
-    width: 80%;
+    width: 100%;
     height: calc(100vh - 120px);
     margin: auto;
     display: grid;
@@ -217,8 +216,13 @@
       -ms-grid-columns: 1fr 400px; }
   .body .list {
     position: relative;
-    width: 700px;
-    margin: auto; }
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap; }
+    .body .list .card-item {
+      width: 448px;
+      margin: 0 10px 20px 10px; }
   .body .toGo {
     position: fixed;
     width: 100%;
@@ -362,6 +366,8 @@
     text-transform: uppercase; }
   .btn.btn-radius {
     border-radius: 45px; }
+  .btn.btn-all {
+    width: 100%; }
   .btn.btn-div {
     height: 45px;
     line-height: 45px;
@@ -419,10 +425,12 @@
   width: calc(100% - 30px);
   padding: 15px;
   border: 1px rgba(0, 0, 0, 0.1) solid;
-  margin: 15px 0;
+  margin-top: 10px;
   margin-bottom: 30px;
   border-radius: 7px;
   overflow: hidden; }
+  .card-item:hover {
+    background-color: rgba(225, 225, 225, 0.34); }
   .card-item.ci-image .top {
     position: relative;
     width: calc(100% - 2px);
@@ -457,7 +465,41 @@
     .card-item.ci-link .top .link:hover {
       background-color: rgba(225, 225, 225, 0.54); }
   .card-item .mid {
-    padding: 15px 0 0 0; }
+    padding: 10px 0 0 0; }
+
+.frame-profile {
+  position: relative;
+  width: 1000px;
+  margin: auto;
+  display: grid;
+  display: -ms-grid;
+  grid-template-columns: 300px 1fr;
+  -ms-grid-columns: 300px 1fr; }
+  .frame-profile .fp-block {
+    /*position: fixed;
+    width: 250px;*/
+    width: calc(100% - 30px);
+    padding: 15px;
+    border-radius: 7.5px;
+    margin-top: 10px;
+    background-color: rgba(225, 225, 225, 0.34); }
+    .frame-profile .fp-block .top {
+      text-align: center; }
+      .frame-profile .fp-block .top .image {
+        margin: auto; }
+    .frame-profile .fp-block .mid {
+      padding: 10px 0 15px 0;
+      line-height: 1.5; }
+  .frame-profile .fp-left {
+    grid-column: 1;
+    -ms-grid-column: 1;
+    width: calc(100% - 20px);
+    padding: 0 10px; }
+  .frame-profile .fp-right {
+    grid-column: 2;
+    -ms-grid-column: 2;
+    width: calc(100% - 30px);
+    padding: 0 15px; }
 
 .image {
   position: relative;

@@ -3,70 +3,96 @@
 @section('title', 'Profil: '.$user->name)
 
 @section('content')
-    <!-- TODO: hapus ini -->
-    <p style="background: yellow">Teruntuk Ganjar Hadiatna.<br>
-       (1) Baca eta comment urang di file <code>views/user/profile.blade.php</code> keur panduan desain.<br>
-       (2) <small>Mockup aya di folder <code>/mockup</code><br></small>
-       -- Salam sukses dan damai --
-    </p>
+<div class="frame-profile">
+    <div class="fp-left" id="left-container">
+        <div class="fp-block">
+            <div class="top">
+                <div class="image image-full image-radius" style="background-image: url({{ asset($user->photo_path) }});"></div>
+            </div>
+            <div class="mid ctn-main-font ctn-16px ctn-min-color">
+                <p class="ctn-main-font ctn-mikro ctn-main-font">
+                    {{ $user->name }}
+                </p>
+                <p class="ctn-main-font ctn-16px ctn-main-font ctn-thin">
+                    Joined on {{ $user->created_at }}
+                </p>
+                <p class="ctn-main-font ctn-16px ctn-main-font ctn-thin">
+                    {{ $user->verification_items_count }} Reviewed
+                </p>
+                <p class="ctn-main-font ctn-16px ctn-main-font ctn-thin">
+                    {{ $user->unreviewed_verification_items_count }} Unreviewed
+                </p>
+            </div>
 
-    <div id="left-container">
-        <img id="photo-profile" src="{{ asset($user->photo_path) }}" alt="Foto pengguna">
-        <div id="user-information">
-            <p>Tanggal bergabung: {{ $user->created_at }}</p>
-            <p>Jumlah pengajuan: {{ $user->verification_items_count }}</p>
-            <p>Jumlah yang belum direview: {{ $user->unreviewed_verification_items_count }}</p>
+            @if ($user->id == Auth::user()->id)
+            <form method="post" action="{{ route('user_delete') }}">
+                @csrf
+                <button type="submit" class="btn btn-primary-color btn-all">
+                    Hapus Akun
+                </button>
+            </form>
+            @endif
         </div>
-
-        @if ($user->id == Auth::user()->id)
-        <form method="post" action="{{ route('user_delete') }}">
-            @csrf
-            <button type="submit">Hapus Akun</button>
-        </form>
-        @endif
     </div>
 
-    <div id="main-container">
-        <!-- kotak daftar verification item -->
-        <div class="list-of-verification-item">
-            @foreach ($user->verification_items as $verification_item)
-                <!--
-                Ada 2 tipe verifikasi item.
-                    (1) Image-based
-                    (2) Link-based
+    <div class="fp-right">
+        @foreach ($user->verification_items as $verification_item)
+            @if ($verification_item->type == 'Gambar')
+            <div class="card-item ci-image">
+                <a class="ctn-main-font ctn-mikro" href="{{ url('/verification/review-result/'.$verification_item->id) }}">
+                    <div class="top">
+                        @foreach ($verification_item->verification_item_images as $verification_item_image)
+                            <div class="cl-{{ $loop->iteration }}">
+                                <!--gambar tidak muncul-->
+                                <div class="image image-full no-bg-color" style="background-image: url('{{ asset('storage/verification_sneakers_images/'.$verification_item_image->path) }}');"></div>
+                            </div>
 
-                Kedua tipe ini punya tampilan yang sedikit berbeda untuk box div.list-item
-                Perbedaan dari segi tampilan:
-                    (-) Untuk tipe gambar menampilkan 3 gambar. Sedangkan link, hanya teks link
-                    (-) Untuk tipe gambar menggunakan teks `tanggal upload`. Sedangkan link, `tanggal submit`
 
-                NOTE: Lihat mockup file yang ada di directory /mockup 
-                -->
-                @if ($verification_item->type == 'Gambar')
-                <!-- kotak item... setiap item berisi 3 gambard dan keterangan tanggal upload + status review -->
-                <div class="list-item">
-                    @foreach ($verification_item->verification_item_images as $verification_item_image)
-                        <img src="{{ asset('storage/verification_sneakers_images/'.$verification_item_image->path) }}" alt="Sneakers Image" width="150" height="120">
-                        @if ($loop->iteration == 3)
-                            @break
-                        @endif
-                    @endforeach
-                    Tanggal upload: {{ $verification_item->created_at }}
-                    Status review: {{ $verification_item->status_review }}
+                            @if ($loop->iteration == 3)
+                                @break
+                            @endif
+                        @endforeach
+                    </div>
+                </a>
+                <div class="mid">
+                    <div class="ctn-main-font ctn-min-color ctn-16px">
+                        Type: Image
+                    </div>
+                    <div class="ctn-main-font ctn-min-color ctn-16px">
+                        Uploaded : {{ $verification_item->created_at }}
+                    </div>
+                    <div class="ctn-main-font ctn-min-color ctn-16px">
+                        Status : <span class="ctn-main-font ctn-int-color ctn-16px">{{ $verification_item->status_review }}</span>
+                    </div>
                 </div>
-                @endif
-                @if ($verification_item->type == 'Link')
-                <div class="list-item">
-                    Link: <a href="{{ $verification_item->verification_item_link->link }}">
+                <div class="bot"></div>
+            </div>
+            @endif
+            @if ($verification_item->type == 'Link')
+            <div class="card-item ci-link">
+                <a href="{{ url('/verification/review-result/'.$verification_item->id) }}">
+                    <div class="top">
+                        <div class="link ctn-main-font ctn-mikro">
                             {{ $verification_item->verification_item_link->link }}
-                          </a>
-                    Tanggal submit: {{ $verification_item->created_at }}
-                    Status review: {{ $verification_item->status_review }}
+                        </div>
+                    </div>
+                </a>
+                <div class="mid">
+                    <div class="ctn-main-font ctn-min-color ctn-16px">
+                        Type: Link
+                    </div>
+                    <div class="ctn-main-font ctn-min-color ctn-16px">
+                        Submited : {{ $verification_item->created_at }}
+                    </div>
+                    <div class="ctn-main-font ctn-min-color ctn-16px">
+                        Status : <span class="ctn-main-font ctn-int-color ctn-16px">{{ $verification_item->status_review }}</span>
+                    </div>
                 </div>
-                @endif
-            @endforeach
-        </div>
-        {{ $user->verification_items->links() }}
+            </div>
+            @endif
+        @endforeach
     </div>
+</div>
+{{ $user->verification_items->links() }}
 @endsection
 
