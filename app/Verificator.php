@@ -26,4 +26,10 @@ class Verificator extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'reviewer_id')
+                        ->orderBy('created_at', 'asc');
+    }
 }
