@@ -50,16 +50,33 @@
 					</div>
 					<div class="menu-ctn">
 						<div class="menu-init">
-							<a href="{{ url('/login') }}">
-								<button class="btn btn-primary-color" style="margin-right: 10px;">
-			    					Login
-			    				</button>
-			    			</a>
-			    			<a href="{{ url('/register') }}">
-			    				<button class="btn btn-main-color">
-			    					Register
-			    				</button>
-			    			</a>
+							@if (Auth::id())
+								<a href="{{ url('/user/'.Auth::id()) }}">
+									<button class="btn btn-circle btn-primary-color" style="margin-right: 10px;">
+				    					<span class="fa fa-lg fa-user"></span>
+				    				</button>
+				    			</a>
+				    			<a href="{{ url('/user/logout') }}">
+									<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;">
+				    					<span class="fa fa-lg fa-power-off"></span>
+				    				</button>
+				    			</a>
+				    			<button class="btn btn-radius btn-main-color">
+				    				<span class="fa fa-lg fa-plus-circle"></span>
+				    				<span>Verification</span>
+				    			</button>
+							@else
+								<a href="{{ url('/login') }}">
+									<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;">
+				    					Login
+				    				</button>
+				    			</a>
+				    			<a href="{{ url('/register') }}">
+				    				<button class="btn btn-radius btn-main-color">
+				    					Register
+				    				</button>
+				    			</a>
+				    		@endif
 						</div>
 					</div>
 				</div>
