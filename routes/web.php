@@ -72,6 +72,10 @@ Route::middleware('auth')->group(function() {
 Route::namespace('Verificator')->prefix('verificator')->group(function() {
         Route::middleware('auth_verificator')->group(function() {
             Route::get('logout', 'Auth\LoginController@logout');
+            Route::get('/change', function() {
+                return view('verificator.change', ['verificator' => Auth::guard('web_verificator')->user()]);
+            });
+            Route::post('/change', 'VerificatorController@change');
 
             Route::get('review/form/{verification_item_id}', 'ReviewController@showForm');
             Route::post('review/form/{verification_item_id}', 'ReviewController@saveReview');
