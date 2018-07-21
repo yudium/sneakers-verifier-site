@@ -87,3 +87,25 @@ Route::namespace('Verificator')->prefix('verificator')->group(function() {
         });
 });
 
+/**
+ * -----------------------------------------------------------------------------
+ * Admin route area
+ * -----------------------------------------------------------------------------
+ */
+Route::namespace('Admin')->prefix('admin')->group(function() {
+        Route::middleware('auth_admin')->group(function() {
+            Route::get('logout', 'Auth\LoginController@logout');
+            Route::get('/change', function() {
+                return view('admin.change', ['admin' => Auth::guard('web_admin')->user()]);
+            });
+            Route::post('/change', 'AdminController@change');
+            Route::get('/dashboard', function() {
+                return view('admin.dashboard');
+            });
+        });
+
+        Route::middleware('admin_guest')->group(function() {
+            Route::get('login', 'Auth\LoginController@showLoginForm');
+            Route::post('login', 'Auth\LoginController@login')->name('admin.login');
+        });
+});
