@@ -15,8 +15,8 @@ class Verificator extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
+        'name', 'email', 'password', 'photo', 'biography',
+   ];
 
     /**
      * The attributes that should be hidden for arrays.
