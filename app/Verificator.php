@@ -27,6 +27,9 @@ class Verificator extends Authenticatable
         'password', 'remember_token',
     ];
 
+    const PHOTO_PROFILE_DIR = 'storage/verificator_photo_profile';
+    const PHOTO_DEFAULT     = 'storage/images/default_photo.svg';
+
     public function reviews()
     {
         return $this->hasMany('App\Review', 'reviewer_id')
