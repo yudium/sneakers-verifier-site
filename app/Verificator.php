@@ -35,4 +35,12 @@ class Verificator extends Authenticatable
         return $this->hasMany('App\Review', 'reviewer_id')
                         ->orderBy('created_at', 'asc');
     }
+
+    public function getPhotoPathAttribute()
+    {
+        if (!$this->photo) {
+            return self::PHOTO_DEFAULT;
+        }
+        return self::PHOTO_PROFILE_DIR.'/'.$this->photo;
+    }
 }
