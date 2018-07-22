@@ -14,6 +14,14 @@
     @stack('styles')
 
     <script type="text/javascript">
+    	function opRequest(stt) {
+    		if (stt == 'open') {
+    			$('#new-request').show();
+    		} else {
+    			$('#new-request').hide();
+    		}
+    	}
+
     	window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
@@ -40,7 +48,7 @@
 					<div class="menu-ctn">
 						<ul class="menu-header">
 							<a href="{{ url('/') }}">
-						    	<li>Home Feeds</li>
+						    	<li>Home</li>
 						    </a>
 						    <a href="{{ url('/verification/list') }}">
 						    	<li>Sneakers</li>
@@ -56,12 +64,7 @@
 				    					<span class="fa fa-lg fa-user"></span>
 				    				</button>
 				    			</a>
-				    			<a href="{{ url('/user/logout') }}">
-									<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;">
-				    					<span class="fa fa-lg fa-power-off"></span>
-				    				</button>
-				    			</a>
-				    			<button class="btn btn-radius btn-main-color">
+				    			<button class="btn btn-radius btn-main-color" onclick="opRequest('open')">
 				    				<span class="fa fa-lg fa-plus-circle"></span>
 				    				<span>Verification</span>
 				    			</button>
@@ -80,6 +83,26 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup" id="new-request" onclick="opRequest('hide')">
+		<div class="place compose">
+			<div class="cmp-1" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
+				<a href="{{ url('/verification/new-request/image-based') }}">
+					<div class="content">
+						<div class="icn fa fa-lg fa-images"></div>
+						<div class="ttl">Image Based</div>
+					</div>
+				</a>
+			</div>
+			<div class="cmp-2">
+				<a href="{{ url('/verification/new-request/link-based') }}">
+					<div class="content">
+						<div class="icn fa fa-lg fa-link"></div>
+						<div class="ttl">Link Based</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>

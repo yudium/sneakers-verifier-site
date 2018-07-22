@@ -133,7 +133,7 @@
 		    		</p>
 		    		<div class="padding-top-5px">
 			    		@if (Auth::id())
-			    			<button class="btn btn-radius btn-main-color">
+			    			<button class="btn btn-radius btn-main-color" onclick="opRequest('open')">
 				    			<span class="fa fa-lg fa-plus-circle"></span>
 				    			<span>Verification</span>
 				    		</button>

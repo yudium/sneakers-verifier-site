@@ -214,3 +214,14 @@ $err-color: #ff0000;
 .padding-top-5px {
 	padding-top: 5px;
 }
+
+//border
+.bdr-bottom {
+	border-bottom: 1px rgba(0,0,0,0.1) solid;
+}
+.bdr-top {
+	border-top: 1px rgba(0,0,0,0.1) solid;
+}
+.bdr-all {
+	border: 1px rgba(0,0,0,0.1) solid;
+}
