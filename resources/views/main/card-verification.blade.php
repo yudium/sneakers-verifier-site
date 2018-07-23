@@ -36,10 +36,16 @@
     </div>
     <div class="bot">
         <a href="{{ url('/verification/review-result/'.$verification_item->id) }}" class="link">
-            Review Result
+            Result
         </a>
-        <a href="{{ url('/verification/detail/'.$verification_item->id) }}" class="link">
-            Detail Verification
-        </a>
+        @if (Auth::guard('web_verificator')->user())
+            <a href="{{ url('/verificator/review/form/'.$verification_item->id) }}" class="link">
+                Review Now
+            </a>
+        @else
+            <a href="{{ url('/verification/detail/'.$verification_item->id) }}" class="link">
+                Detail
+            </a>
+        @endif
     </div>
 </div>

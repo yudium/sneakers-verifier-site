@@ -58,7 +58,10 @@
                                 <li>Home</li>
                             </a>
                             <a href="{{ url('/verification/list') }}">
-                                <li>Verifikasi Tereview</li>
+                                <li>Reviewed</li>
+                            </a>
+                            <a href="{{ url('/verification/list/unreviewed') }}">
+                                <li>Unreviewed</li>
                             </a>
                         </ul>
                     </div>
