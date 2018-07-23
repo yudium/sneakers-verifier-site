@@ -102,28 +102,28 @@ Route::prefix('admin')->group(function(){
             Route::post('/change', 'AdminController@change');
             Route::get('/dashboard', function() {
                 return view('admin.dashboard');
-            });
-            Route::get('/admin-list', 'AdminController@all');
+            })->name('admin.dashboard');
+            Route::get('/admin-list', 'AdminController@all')->name('admin.list');
             Route::get('/create-new', function() {
                 return view('admin.create-new');
-            });
+            })->name('admin.create-new');
             Route::post('/create-new', 'AdminController@create')->name('create_admin');
-            Route::get('/verification-list', 'AdminController@getVerificationList');
+            Route::get('/verification-list', 'AdminController@getVerificationList')->name('admin.verification-list');
             Route::get('/change', function() {
                 return view('admin.change', ['admin' => Auth::guard('web_admin')->user()]);
-            });
+            })->name('admin.change');
             Route::post('/change', 'AdminController@change');
         });
 
     Route::middleware('auth_admin')
         ->group(function() {
-            Route::get('/user-list', 'UserController@all');
+            Route::get('/user-list', 'UserController@all')->name('admin.user-list');
             Route::post('/user/delete/{id}', 'UserController@delete');
 
-            Route::get('/verificator-list', 'Verificator\VerificatorController@all');
+            Route::get('/verificator-list', 'Verificator\VerificatorController@all')->name('admin.verificator-list');
             Route::get('/verificator/create', function() {
                 return view('admin.create-verificator');
-            });
+            })->name('admin.verificator-create');
             Route::post('/verificator/create', 'Verificator\VerificatorController@create')->name('create_verificator');
             Route::post('/verificator/delete/{id}', 'Verificator\VerificatorController@delete');
             Route::get('/verificator/{id}/biography/create', 'Verificator\VerificatorController@createBiography');
