@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/verification/list', 'VerificationController@getReviewed');
+Route::get('/verification/list/unreviewed', 'VerificationController@getUnreviewed');
 Route::get('/verification/review-result/{id}', 'VerificationController@showReviewResult');
 Route::get('/verificator/{id}', 'Verificator\VerificatorController@profile');
 Route::get('/verificator/{id}/biography', 'Verificator\VerificatorController@showBiography')->name('show_verificator_biography');

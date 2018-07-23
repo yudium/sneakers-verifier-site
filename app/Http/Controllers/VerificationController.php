@@ -28,6 +28,13 @@ class VerificationController extends Controller
         return view('verification.list', compact('verification_items'));
     }
 
+    public function getUnreviewed()
+    {
+        $verification_items = VerificationItem::where('status_review', '=', VerificationItem::STATUS_UNREVIEWED)->paginate(6);
+
+        return view('verification.list', compact('verification_items'));
+    }
+
     public function addVerificationRequestImagesBased(Request $req)
     {
         Log::debug('addVerificationRequestImagesBased() is started');
