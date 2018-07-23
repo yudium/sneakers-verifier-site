@@ -65,38 +65,52 @@
 					</div>
 					<div class="menu-ctn">
 						<div class="menu-init">
-							@if (Auth::guard('web_verificator')->user())
-								<a href="{{ url('/verificator/'.Auth::guard('web_verificator')->user()->id) }}">
-									<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;">
-					    				<span class="fa fa-lg fa-user"></span>
-					    			</button>
-					    		</a>
-					    		<a href="{{ url('/verificator/logout') }}">
-			                        <button class="btn btn-primary-color btn-circle">
-			                            <span class="fa fa-lg fa-power-off"></span>
-			                        </button>
-			                    </a>
-							@else
-								@if (Auth::id())
+							@if (Auth::guard('web_admin')->user() || Auth::guard('web_verificator')->user() || Auth::guard('web_user')->user())
+								@if (Auth::guard('web_admin')->user())
+									<a href="{{ url('/admin/dashboard') }}">
+										<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;">
+						    				<span class="fa fa-lg fa-home"></span>
+						    				<span>Dashboard</span>
+						    			</button>
+						    		</a>
+						    		<a href="{{ url('/admin/logout') }}">
+				                        <button class="btn btn-primary-color btn-circle">
+				                            <span class="fa fa-lg fa-power-off"></span>
+				                        </button>
+				                    </a>
+								@endif
+								@if (Auth::guard('web_verificator')->user())
+									<a href="{{ url('/verificator/'.Auth::guard('web_verificator')->user()->id) }}">
+										<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;">
+						    				<span class="fa fa-lg fa-user"></span>
+						    			</button>
+						    		</a>
+						    		<a href="{{ url('/verificator/logout') }}">
+				                        <button class="btn btn-primary-color btn-circle">
+				                            <span class="fa fa-lg fa-power-off"></span>
+				                        </button>
+				                    </a>
+				                @endif
+								@if (Auth::guard('web_user')->user())
 									<a href="{{ url('/user/'.Auth::id()) }}">
 										<button class="btn btn-circle btn-primary-color" style="margin-right: 10px;">
-					    					<span class="fa fa-lg fa-user"></span>
-					    				</button>
-					    			</a>
-					    			<button class="btn btn-radius btn-main-color" onclick="opRequest('open')">
-					    				<span class="fa fa-lg fa-plus-circle"></span>
-					    				<span>Verification</span>
-					    			</button>
-								@else
-									<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;" onclick="opLogin('open')">
-					    				Login
-					    			</button>
-					    			<a href="{{ url('/register') }}">
-					    				<button class="btn btn-radius btn-main-color">
-					    					Register
-					    				</button>
-					    			</a>
-					    		@endif
+						    				<span class="fa fa-lg fa-user"></span>
+						    			</button>
+						    		</a>
+						   			<button class="btn btn-radius btn-main-color" onclick="opRequest('open')">
+						   				<span class="fa fa-lg fa-plus-circle"></span>
+						   				<span>Verification</span>
+						   			</button>
+						   		@endif
+					   		@else
+								<button class="btn btn-radius btn-primary-color" style="margin-right: 10px;" onclick="opLogin('open')">
+					    			Login
+					    		</button>
+					   			<a href="{{ url('/register') }}">
+					   				<button class="btn btn-radius btn-main-color">
+					   					Register
+					   				</button>
+				    			</a>
 							@endif
 						</div>
 					</div>

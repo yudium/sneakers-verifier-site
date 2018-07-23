@@ -51,7 +51,7 @@
                     <div class="padding-10px">
                         <div class="bdr-bottom"></div>
                     </div>
-                    @if ($verificator->id == Auth::user()->id)
+                    @if ($verificator->id == Auth::guard('web_verificator')->user()->id)
                     <form method="post" action="">
                         @csrf
                         <button type="submit" class="btn btn-danger-color btn-all">
@@ -62,16 +62,21 @@
                     @endif
                     @if (Auth::guard('web_admin')->check())
                     <div id="admin-panel">
+                        @if ($verificator->biography == '')
+                            <a href="{{ route('create_verificator_biography', ['id' => $verificator->id]) }}">
+                                <button class="btn btn-primary-color btn-all">
+                                    <span class="fa fa-lg fa-id-card"></span>
+                                    <span>Create Biography</span>
+                                </button>
+                            </a>
+                        @endif
                         <form method="post" action="{{ action('Verificator\VerificatorController@delete', ['id' => $verificator->id]) }}">
                             @csrf
-                            <button type="submit" class="btn btn-primary-color btn-all">
-                                Hapus Akun
+                            <button type="submit" class="btn btn-danger-color btn-all">
+                                <span class="fa fa-lg fa-trash-alt"></span>
+                                Delete Account
                             </button>
                         </form>
-
-                        @if ($verificator->biography == '')
-                        <a href="{{ route('create_verificator_biography', ['id' => $verificator->id]) }}">Buat biografi</a>
-                        @endif
                     </div>
                     @endif
                 @endif
@@ -81,7 +86,7 @@
     <div class="fp-right">
         @foreach ($verificator->reviews as $review)
             <div class="card-item ci-link">
-                <div class="top">
+                <div class="mid">
                     <div class="ctn-main-font ctn-min-color ctn-16px">
                         Review on: {{ $review->created_at }}
                     </div>
