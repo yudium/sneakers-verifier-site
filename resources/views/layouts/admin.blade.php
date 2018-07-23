@@ -26,24 +26,88 @@
     </script>
 </head>
 <body>
-    <div class="header">
-        <nav>
-        <ul>
-            <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
-            <li><a href="{{ route('admin.list') }}">Admin List</a></li>
-            <li><a href="{{ route('admin.create-new') }}">Admin Create New</a></li>
-            <li><a href="{{ route('admin.verification-list') }}">Verification List</a></li>
-            <li><a href="{{ route('admin.change') }}">Edit account</a></li>
-            <li><a href="{{ route('admin.user-list') }}">User List</a></li>
-            <li><a href="{{ route('admin.verificator-list') }}">Verificator List</a></li>
-            <li><a href="{{ route('admin.verificator-create') }}">Create Verificator</a></li>
+<div class="dashboard">
+    <div class="side">
+        <ul class="menu">
+            <div class="hd">
+                <span class="ctn-main-font ctn-white-color ctn-small">Options</span>
+            </div>
+            
+            <a href="{{ route('admin.dashboard') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-home"></span>
+                    <span class="ttl">Dashboard</span>
+                </li>
+            </a>
+
+            <div class="hd">
+                <span class="ctn-main-font ctn-white-color ctn-16px ctn-thin">New</span>
+            </div>
+            <a href="{{ route('admin.create-new') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-plus"></span>
+                    <span class="ttl">Create Admin</span>
+                </li>
+            </a>
+            <a href="{{ route('admin.verificator-create') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-plus"></span>
+                    <span class="ttl">Create Verificator</span>
+                </li>
+            </a>
+            
+            <div class="hd">
+                <span class="ctn-main-font ctn-white-color ctn-16px ctn-thin">Lists</span>
+            </div>
+            <a href="{{ route('admin.list') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-list"></span>
+                    <span class="ttl">Admin List</span>
+                </li>
+            </a>
+            <a href="{{ route('admin.user-list') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-list"></span>
+                    <span class="ttl">User List</span>
+                </li>
+            </a>
+            <a href="{{ route('admin.verificator-list') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-list"></span>
+                    <span class="ttl">Verificator List</span>
+                </li>
+            </a>
+            <a href="{{ route('admin.verification-list') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-list"></span>
+                    <span class="ttl">Verification List</span>
+                </li>
+            </a>
+            
+            <div class="hd">
+                <span class="ctn-main-font ctn-white-color ctn-16px ctn-thin">Setting</span>
+            </div>
+            <a href="{{ route('admin.change') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-pencil-alt"></span>
+                    <span class="ttl">Edit account</span>
+                </li>
+            </a>
+            <div class="hd">
+                <span class="ctn-main-font ctn-white-color ctn-16px ctn-thin">Others</span>
+            </div>
+            <a href="{{ url('/admin/logout') }}">
+                <li>
+                    <span class="icn fa fa-lg fa-power-off"></span>
+                    <span class="ttl">Logout</span>
+                </li>
+            </a>
         </ul>
-        </nav>
     </div>
     <div class="body">
         @yield('content')
     </div>
-    <div class="footer"></div>
+</div>
 </body>
 </html>
 

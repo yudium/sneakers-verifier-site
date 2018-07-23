@@ -2,7 +2,7 @@
 @section('title', 'Create new Verificator')
 @section('content')
 <div class="login-container">
-    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">{{ __('Buat akun verificator') }}</div>
+    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">{{ __('Create Verificator Account') }}</div>
     <div class="lc-place">
         <form method="POST" action="{{ route('create_verificator') }}">
             @csrf
@@ -48,7 +48,7 @@
             <div class="lc-block">
                 <div class="lc-right">
                     <button type="submit" class="btn btn-main-color">
-                        {{ __('Buat verificator') }}
+                        {{ __('Create') }}
                     </button>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 @section('title', 'Verificator List')
 
 @section('content')
-    <table border="1">
+    <table>
         <tr>
             <th>ID</th>
             <th>Name</th>

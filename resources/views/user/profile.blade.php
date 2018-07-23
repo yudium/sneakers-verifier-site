@@ -24,7 +24,7 @@
                     </p>
                 </div>
 
-                @if ($user->id == Auth::user()->id)
+                @if ($user->id == Auth::id())
                     <a href="{{ url('/user/change') }}">
                         <button class="btn btn-primary-color btn-all">
                             <span class="fa fa-lg fa-pencil-alt"></span>
