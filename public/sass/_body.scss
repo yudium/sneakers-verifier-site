@@ -84,6 +84,9 @@ $banner-height: calc(100vh - 120px);
 		position: relative;
 		width: 500px;
 		margin: auto;
+		&.lg-big-width {
+			width: 700px;
+		}
 		&.border {
 			border: 1px rgba(0,0,0,0.1) solid;
 			padding: 10px;

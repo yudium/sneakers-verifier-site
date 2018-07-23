@@ -3,74 +3,98 @@
 @section('title', 'Change account')
 
 @section('content')
-    <form
-        action="{{ url()->full() }}"
-        method="post"
-        enctype="multipart/form-data">
-        @csrf
-
-        <div id="image-preview">
-            <img src="{{ asset($verificator->photo_path) }}" alt="Photo Profile">
-        </div>
-        <input id="photo-profile-field" type="file" name="photo"> <br>
-
-        <!-- TODO: ubah konsisten agar bahasa Indonesia -->
-        Name:                <input type="text" name="name" placeholder="{{ $verificator->name }}"> <br>
-        Email:               <input type="text" name="email" placeholder="{{ $verificator->email }}"> <br>
-        Password lama:       <input type="text" name="old_password"> <br>
-        Password baru:       <input type="text" name="new_password"> <br>
-        Konfirmasi Password: <input type="text" name="confirm_password"> <br>
-
-        <button type="submit">Simpan Perubahan</button>
-    </form>
-
-    @script
-    // Pure JS
-    // Thanks to: 0GiS0
-    // Source: (http://jsfiddle.net/0GiS0/Yvgc2/)
-    window.onload = function(){
-        //check file API support
-        if(window.File && window.FileList && window.FileReader)
-        {
-            let filesInput = document.getElementById("photo-profile-field");
-
-            filesInput.addEventListener("change", function(event){
-                let files = event.target.files; // FileList object
-                let output = document.getElementById("image-preview");
-
-                for(let i = 0; i< files.length; i++)
-                {
-                    let file = files[i];
-
-                    //only pics
-                    if(!file.type.match('image'))
-                        continue;
-
-                    let picReader = new FileReader();
-
-                    picReader.addEventListener("load",function(event){
-                        let picFile = event.target;
-                        let div = document.createElement("div");
-
-                        div.innerHTML =
-                        "<img class='preview' src='"+picFile.result+"'" +
-                        " title='" + picFile.name + "'/>" +
-                        "<p id='photo-message'>Photo changed (not saved)</p>";
-
-                        output.innerHTML = ''; // clear previous image
-                        output.insertBefore(div,null);
-                    });
-
-                    //read the image
-                    picReader.readAsDataURL(file);
+<script type="text/javascript">
+    $(function () {
+        var imagesPreview = function (input, place, place2 = '') {
+            if (input.files) {
+                var reader = new FileReader();  
+                reader.onload = function (event) {
+                    $(place).css('background-image', 'url('+event.target.result+')');
                 }
-            });
-        }
-        else
-        {
-            alert("Your browser does not support File API");
-        }
-    }
-    @endscript
+                $(place2).html('Photo changed (not saved)');
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                $(place2).html('Please select a file');
+            }
+        };
+        $('#photo-profile-field').on('change', function () {
+            imagesPreview(this, '#image-preview', '#image-message');
+        });
+    })
+</script>
+
+<div class="login-container lg-big-width">
+    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">{{ __('Edit Account') }}</div>
+    <div class="lc-place">
+        <form
+            action="{{ url()->full() }}"
+            method="post"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-16px">
+                    Public Informations
+                </div>
+            </div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-14px ctn-thin">{{ __('Profile Picture') }}</div>
+                <div>
+                    <div class="padding-bottom-5px">
+                        <div id="image-preview" class="image image-200px image-radius" style="background-image: url({{ asset($verificator->photo_path) }})"></div>
+                        <div id="image-message" class="ctn-main-font ctn-err-color ctn-14px ctn-thin padding-top-10px"></div>
+                    </div>
+                    <input id="photo-profile-field" type="file" name="photo">
+                </div>
+            </div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-14px ctn-thin">{{ __('Name') }}</div>
+                <div>
+                    <input type="text" name="name" class="txt txt-primary-color" value="{{ $verificator->name }}" required>
+                </div>
+            </div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-14px ctn-thin">{{ __('Email') }}</div>
+                <div>
+                    <input type="email" name="email" class="txt txt-primary-color" value="{{ $verificator->email }}" required="true">
+                </div>
+            </div>
+            <div class="padding-10px"></div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-16px">
+                    Private Informations
+                </div>
+            </div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-14px ctn-thin">
+                    Old Password
+                </div>
+                <div>
+                    <input type="password" name="old_password" class="txt txt-primary-color">
+                </div>
+            </div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-14px ctn-thin">
+                    New Password
+                </div>
+                <div>
+                    <input type="password" name="new_password" class="txt txt-primary-color">
+                </div>
+            </div>
+            <div class="lc-block">
+                <div for="email" class="ctn-main-font ctn-min-color ctn-14px ctn-thin">
+                    Confirm Password
+                </div>
+                <div>
+                    <input type="password" name="confirm_password" class="txt txt-primary-color">
+                </div>
+            </div>
+            <div class="lc-block">
+                <div class="lc-right">
+                    <input type="submit" name="submit" class="btn btn-main-color" value="Save Changed">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
 

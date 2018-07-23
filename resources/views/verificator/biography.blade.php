@@ -3,8 +3,14 @@
 @section('title', 'Biography: '.$verificator->name)
 
 @section('content')
-<h3>Biography</h3>
-<h2>{{ $verificator->name }}</h2>
+<div class="review-result">
+    <h3 class="ctn-main-font ctn-min-color ctn-standar padding-10px">
+        Biography
+    </h3>
+    <h2 class="ctn-main-font ctn-min-color ctn-mikro padding-10px">
+    	{{ $verificator->name }}
+    </h2>
 
-{{ $verificator->biography }}
+	<p class="ctn-main-font ctn-min-color ctn-16px ctn-thin">{{ $verificator->biography }}</p>
+</div>
 @endsection

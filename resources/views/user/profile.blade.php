@@ -25,20 +25,20 @@
             </div>
 
             @if ($user->id == Auth::user()->id)
-            <form method="post" action="{{ route('user_delete') }}">
-                @csrf
-                <button type="submit" class="btn btn-primary-color btn-all">
-                    <span class="fa fa-lg fa-trash-alt"></span>
-                    Hapus Akun
-                </button>
-            </form>
-            <div class="padding-10px"></div>
-            <a href="{{ url('/user/logout') }}">
-                <button class="btn btn-primary-color btn-all">
-                    <span class="fa fa-lg fa-power-off"></span>
-                    <span>Logout</span>
-                </button>
-            </a>
+                <a href="{{ url('/user/logout') }}">
+                    <button class="btn btn-primary-color btn-all">
+                        <span class="fa fa-lg fa-power-off"></span>
+                        <span>Logout</span>
+                    </button>
+                </a>
+                <div class="padding-10px"></div>
+                <form method="post" action="{{ route('user_delete') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger-color btn-all">
+                        <span class="fa fa-lg fa-trash-alt"></span>
+                        Delete Account
+                    </button>
+                </form>
             @endif
         </div>
     </div>

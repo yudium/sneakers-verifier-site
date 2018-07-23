@@ -130,6 +130,10 @@
 		background-color: $int-color;
 		color: $pos-color;
 	}
+	&.btn-danger-color {
+		background-color: $err-color;
+		color: $pos-color;
+	}
 	&.btn-main2-color {
 		background-color: rgba(0,0,0,0);
 		color: $sek-color;

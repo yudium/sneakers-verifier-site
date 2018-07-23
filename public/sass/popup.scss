@@ -9,6 +9,25 @@
 	display: none;
 	.place {
 		@include post_center();
+		&.sign {
+			width: 500px;
+			height: 200px;
+			background-color: #fff;
+			border-radius: 7.5px;
+			@include grid_3x(1fr, 1fr, 1fr);
+			.cmp-1 {
+				position: relative;
+				@include column_1();
+			}
+			.cmp-2 {
+				position: relative;
+				@include column_2();
+			}
+			.cmp-3 {
+				position: relative;
+				@include column_3();
+			}
+		}
 		&.compose {
 			width: 400px;
 			height: 200px;
@@ -23,28 +42,28 @@
 				position: relative;
 				@include column_2();
 			}
-			a {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				display: block;
-				&:hover {
-					background-color: rgba(225,225,225,0.34);
-				}
+		}
+		a {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			display: block;
+			&:hover {
+				background-color: rgba(225,225,225,0.34);
 			}
-			.content {
-				@include post_center();
-				text-align: center;
-				.icn {
-					font-size: 32px;
-					color: $min-color;
-					padding-bottom: 15px;
-				}
-				.ttl {
-					font-size: 16px;
-					font-weight: 600;
-					color: $min-color;
-				}
+		}
+		.content {
+			@include post_center();
+			text-align: center;
+			.icn {
+				font-size: 32px;
+				color: $min-color;
+				padding-bottom: 15px;
+			}
+			.ttl {
+				font-size: 16px;
+				font-weight: 600;
+				color: $min-color;
 			}
 		}
 	}

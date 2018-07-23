@@ -138,11 +138,9 @@
 				    			<span>Verification</span>
 				    		</button>
 			    		@else
-			    			<a href="{{ url('/login') }}">
-								<button class="btn btn-primary-color" style="margin-right: 10px;">
-					    			Login
-					    		</button>
-					    	</a>
+							<button class="btn btn-primary-color" style="margin-right: 10px;" onclick="opLogin('open')">
+					    		Login
+					    	</button>
 					    	<a href="{{ url('/register') }}">
 					    		<button class="btn btn-main-color">
 					    			Register
