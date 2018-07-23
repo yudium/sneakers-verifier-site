@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Verificator List')
+@section('title', 'Verificator Lists')
 
 @section('content')
+<div>
+    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">Verificator Lists</div>
     <table>
         <tr>
             <th>ID</th>
@@ -24,4 +26,5 @@
         @endforeach
     </table>
     {{ $verificators->links() }}
+</div>
 @endsection

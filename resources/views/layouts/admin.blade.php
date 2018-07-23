@@ -105,7 +105,9 @@
         </ul>
     </div>
     <div class="body">
+        <div class="padding-10px"></div>
         @yield('content')
+        <div class="padding-10px"></div>
     </div>
 </div>
 </body>

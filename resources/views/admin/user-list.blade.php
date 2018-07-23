@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'User List')
+@section('title', 'User Lists')
 
 @section('content')
+<div>
+    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">User Lists</div>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -24,4 +26,5 @@
         @endforeach
     </table>
     {{ $users->links() }}
+</div>
 @endsection

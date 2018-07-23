@@ -132,7 +132,7 @@
                         Do not waiting too long, check your sneakers today...
                     </p>
                     <div class="padding-top-5px">
-                        @if (Auth::id())
+                        @if (Auth::guard('web_admin')->user() || Auth::guard('web_verificator')->user() || Auth::guard('web_user')->user())
                             <button class="btn btn-radius btn-main-color" onclick="opRequest('open')">
                                 <span class="fa fa-lg fa-plus-circle"></span>
                                 <span>Verification</span>

@@ -118,54 +118,57 @@
 			</div>
 		</div>
 	</div>
-	<div class="popup" id="new-request" onclick="opRequest('hide')">
-		<div class="place compose">
-			<div class="cmp-1" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
-				<a href="{{ url('/verification/new-request/image-based') }}">
-					<div class="content">
-						<div class="icn fa fa-lg fa-images"></div>
-						<div class="ttl">Image Based</div>
-					</div>
-				</a>
-			</div>
-			<div class="cmp-2">
-				<a href="{{ url('/verification/new-request/link-based') }}">
-					<div class="content">
-						<div class="icn fa fa-lg fa-link"></div>
-						<div class="ttl">Link Based</div>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-	<div class="popup" id="new-login" onclick="opLogin('hide')">
-		<div class="place sign">
-			<div class="cmp-1" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
-				<a href="{{ url('/login') }}">
-					<div class="content">
-						<div class="icn fa fa-lg fa-sign-in-alt"></div>
-						<div class="ttl">User Login</div>
-					</div>
-				</a>
-			</div>
-			<div class="cmp-2" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
-				<a href="{{ url('/verificator/login') }}">
-					<div class="content">
-						<div class="icn fa fa-lg fa-sign-in-alt"></div>
-						<div class="ttl">Verificator Login</div>
-					</div>
-				</a>
-			</div>
-			<div class="cmp-3">
-				<a href="{{ url('/admin/login') }}">
-					<div class="content">
-						<div class="icn fa fa-lg fa-sign-in-alt"></div>
-						<div class="ttl">Admin Login</div>
-					</div>
-				</a>
+	@if (Auth::guard('web_admin')->user() || Auth::guard('web_verificator')->user() || Auth::guard('web_user')->user())
+		<div class="popup" id="new-request" onclick="opRequest('hide')">
+			<div class="place compose">
+				<div class="cmp-1" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
+					<a href="{{ url('/verification/new-request/image-based') }}">
+						<div class="content">
+							<div class="icn fa fa-lg fa-images"></div>
+							<div class="ttl">Image Based</div>
+						</div>
+					</a>
+				</div>
+				<div class="cmp-2">
+					<a href="{{ url('/verification/new-request/link-based') }}">
+						<div class="content">
+							<div class="icn fa fa-lg fa-link"></div>
+							<div class="ttl">Link Based</div>
+						</div>
+					</a>
+				</div>
 			</div>
 		</div>
-	</div>
+	@else
+		<div class="popup" id="new-login" onclick="opLogin('hide')">
+			<div class="place sign">
+				<div class="cmp-1" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
+					<a href="{{ url('/login') }}">
+						<div class="content">
+							<div class="icn fa fa-lg fa-sign-in-alt"></div>
+							<div class="ttl">User Login</div>
+						</div>
+					</a>
+				</div>
+				<div class="cmp-2" style="border-right: 2px rgba(0,0,0,0.1) dashed;">
+					<a href="{{ url('/verificator/login') }}">
+						<div class="content">
+							<div class="icn fa fa-lg fa-sign-in-alt"></div>
+							<div class="ttl">Verificator Login</div>
+						</div>
+					</a>
+				</div>
+				<div class="cmp-3">
+					<a href="{{ url('/admin/login') }}">
+						<div class="content">
+							<div class="icn fa fa-lg fa-sign-in-alt"></div>
+							<div class="ttl">Admin Login</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	@endif
 	<div class="body">
 		@yield('content')
 	</div>
