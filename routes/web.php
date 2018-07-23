@@ -29,7 +29,7 @@ Route::get('/verification/review-result/{id}', 'VerificationController@showRevie
 Route::get('/verificator/{id}', 'Verificator\VerificatorController@profile');
 Route::get('/verificator/{id}/biography', 'Verificator\VerificatorController@showBiography')->name('show_verificator_biography');
 Route::get('/user/{id}', 'UserController@profile');
-
+Route::get('/verification/detail/{id}', 'VerificationController@detail');
 
 /**
  * -----------------------------------------------------------------------------
@@ -58,7 +58,6 @@ Route::middleware('auth')->group(function() {
         Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
 
         Route::get('delete/{id}', 'VerificationController@delete');
-        Route::get('detail/{id}', 'VerificationController@detail');
     });
 });
 
