@@ -15,9 +15,13 @@
         if (true) {
             $('.banner .bn-place').animate({scrollTop: (sc + wd)}, 500);
         }
-        console.log(sc);
+        if (sc > 3000) {
+            $('.banner .bn-place').animate({scrollTop: 0}, 0);
+        }
+        setTimeout(toRight, 8000);
     }
     $(document).ready(function() {
+        setTimeout(toRight, 8000);
         $('.banner .bn-place').scrollTop(0);
     });
 </script>
@@ -35,11 +39,13 @@
                     <p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
                         I can help you to check an original sneakers.
                     </p>
+                    <!--
                     <div class="padding-top-5px">
                         <button class="target btn btn-main-color btn-radius" onclick="toRight()">
                             <span>How this is works?</span>
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
 
@@ -51,11 +57,13 @@
                     <p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
                         We check your sneakers with our professional verificators that have been sertificated.
                     </p>
+                    <!--
                     <div class="padding-top-5px">
                         <button class="target btn btn-main-color btn-radius" onclick="toRight()">
                             <span>Is it easy to use?</span>
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
 
@@ -67,11 +75,13 @@
                     <p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
                         Ya, you just send me some pictures or links of your sneakers, and we would check your sneakers.
                     </p>
+                    <!--
                     <div class="padding-top-5px">
                         <button class="target btn btn-main-color btn-radius" onclick="toRight()">
                             <span>Is it trusted?</span>
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
 
@@ -83,11 +93,13 @@
                     <p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
                         Ofcourse, there are more then hundred verificators and online shops that work with us. So, you do not be affraid because it will be trusted.
                     </p>
+                    <!--
                     <div class="padding-top-5px">
                         <button class="target btn btn-main-color btn-radius" onclick="toRight()">
                             <span>What would you get?</span>
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
 
@@ -99,11 +111,13 @@
                     <p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
                         We will save your time and money. You can get original sneakers that has been checked by our proffesional verificators.
                     </p>
+                    <!--
                     <div class="padding-top-5px">
                         <button class="target btn btn-main-color btn-radius" onclick="toRight()">
                             <span>Is it all free?</span>
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
 
@@ -115,11 +129,13 @@
                     <p class="ctn-main-font ctn-min-color ctn-20px ctn-thin padding-bottom-10px">
                         We do not take your money to check your sneakers in here, it's all free for you.
                     </p>
+                    <!--
                     <div class="padding-top-5px">
                         <button class="target btn btn-main-color btn-radius" onclick="toRight()">
                             <span>What's next?</span>
                         </button>
                     </div>
+                    -->
                 </div>
             </div>
 
