@@ -26,7 +26,8 @@ Route::get('/', function () {
 Route::get('/verification/list', 'VerificationController@getReviewed');
 Route::get('/verification/review-result/{id}', 'VerificationController@showReviewResult');
 Route::get('/verificator/{id}', 'Verificator\VerificatorController@profile');
-Route::get('/verificator/{id}/biography', 'Verificator\VerificatorController@showBiography');
+Route::get('/verificator/{id}/biography', 'Verificator\VerificatorController@showBiography')->name('show_verificator_biography');
+Route::get('/user/{id}', 'UserController@profile');
 
 
 /**
@@ -55,11 +56,9 @@ Route::middleware('auth')->group(function() {
         Route::post('new-request/image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_image_based');
         Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
 
-        Route::get('delete/{id}', 'VerificationController@cancelRequest');
+        Route::get('delete/{id}', 'VerificationController@delete');
         Route::get('detail/{id}', 'VerificationController@detail');
     });
-
-    Route::get('/user/{id}', 'UserController@profile');
 });
 
 
@@ -92,8 +91,10 @@ Route::namespace('Verificator')->prefix('verificator')->group(function() {
  * Admin route area
  * -----------------------------------------------------------------------------
  */
-Route::namespace('Admin')->prefix('admin')->group(function() {
-        Route::middleware('auth_admin')->group(function() {
+Route::prefix('admin')->group(function(){
+    Route::middleware('auth_admin')
+        ->namespace('Admin')
+        ->group(function() {
             Route::get('logout', 'Auth\LoginController@logout');
             Route::get('/change', function() {
                 return view('admin.change', ['admin' => Auth::guard('web_admin')->user()]);
@@ -102,9 +103,39 @@ Route::namespace('Admin')->prefix('admin')->group(function() {
             Route::get('/dashboard', function() {
                 return view('admin.dashboard');
             });
+            Route::get('/admin-list', 'AdminController@all');
+            Route::get('/create-new', function() {
+                return view('admin.create-new');
+            });
+            Route::post('/create-new', 'AdminController@create')->name('create_admin');
+            Route::get('/verification-list', 'AdminController@getVerificationList');
+            Route::get('/change', function() {
+                return view('admin.change', ['admin' => Auth::guard('web_admin')->user()]);
+            });
+            Route::post('/change', 'AdminController@change');
         });
 
-        Route::middleware('admin_guest')->group(function() {
+    Route::middleware('auth_admin')
+        ->group(function() {
+            Route::get('/user-list', 'UserController@all');
+            Route::post('/user/delete/{id}', 'UserController@delete');
+
+            Route::get('/verificator-list', 'Verificator\VerificatorController@all');
+            Route::get('/verificator/create', function() {
+                return view('admin.create-verificator');
+            });
+            Route::post('/verificator/create', 'Verificator\VerificatorController@create')->name('create_verificator');
+            Route::post('/verificator/delete/{id}', 'Verificator\VerificatorController@delete');
+            Route::get('/verificator/{id}/biography/create', 'Verificator\VerificatorController@createBiography');
+            Route::post('/verificator/{id}/biography/create', 'Verificator\VerificatorController@saveBiography')->name('create_verificator_biography');
+
+            Route::get('/verification/detail/{id}', 'VerificationController@detail');
+            Route::get('/verification/delete/{id}', 'VerificationController@delete');
+        });
+
+    Route::middleware('admin_guest')
+        ->namespace('Admin')
+        ->group(function() {
             Route::get('login', 'Auth\LoginController@showLoginForm');
             Route::post('login', 'Auth\LoginController@login')->name('admin.login');
         });

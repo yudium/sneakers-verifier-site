@@ -134,11 +134,18 @@ class VerificationController extends Controller
         return view('verification.detail', compact('verification_item'));
     }
 
-    public function cancelRequest($id)
+    public function delete($id)
     {
         $verification_item = VerificationItem::find($id);
-
-        if (Gate::allows('delete-verification-item', $verification_item))
+        if (Auth::guard('web_admin')->check())
+        {
+            $verification_item->delete();
+            return redirect('admin/verification-list')->with([
+                'message' => 'Your data has been deleted',
+                'status'  => 'SUCCESS',
+            ]);
+        }
+        else if (Gate::allows('delete-verification-item', $verification_item))
         {
             if ($verification_item->review) {
                 return redirect()->back()->with([

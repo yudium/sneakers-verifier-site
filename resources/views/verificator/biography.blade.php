@@ -6,5 +6,9 @@
 <h3>Biography</h3>
 <h2>{{ $verificator->name }}</h2>
 
-{{ $verificator->biography }}
+@if ($verificator->biography !== '')
+    {{ $verificator->biography }}
+@else
+    Tidak ada biografi
+@endif
 @endsection

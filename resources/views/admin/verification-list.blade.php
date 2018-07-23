@@ -1,58 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title', 'Profil: '.$user->name)
+@section('title', 'Verification List')
 
 @section('content')
-<div class="frame-profile">
-    <div class="fp-left" id="left-container">
-        <div class="fp-block">
-            <div class="top">
-                <div class="image image-full image-radius" style="background-image: url({{ asset($user->photo_path) }});"></div>
-            </div>
-            <div class="mid ctn-main-font ctn-16px ctn-min-color">
-                <p class="ctn-main-font ctn-mikro ctn-main-font">
-                    {{ $user->name }}
-                </p>
-                <p class="ctn-main-font ctn-16px ctn-main-font ctn-thin">
-                    Joined on {{ $user->created_at }}
-                </p>
-                <p class="ctn-main-font ctn-16px ctn-main-font ctn-thin">
-                    {{ $user->verification_items_count }} Reviewed
-                </p>
-                <p class="ctn-main-font ctn-16px ctn-main-font ctn-thin">
-                    {{ $user->unreviewed_verification_items_count }} Unreviewed
-                </p>
-            </div>
-
-            @if (Auth::check())
-            @if ($user->id == Auth::user()->id)
-            <form method="post" action="{{ route('user_delete') }}">
-                @csrf
-                <button type="submit" class="btn btn-primary-color btn-all">
-                    Hapus Akun
-                </button>
-            </form>
-            @endif
-            @endif
-
-            @if (Auth::guard('web_admin')->check())
-            <div id="admin-panel">
-                <form method="post" action="{{ action('UserController@delete', ['id' => $user->id]) }}">
-                    @csrf
-                    <button type="submit" class="btn btn-primary-color btn-all">
-                        Hapus Akun
-                    </button>
-                </form>
-            </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="fp-right">
-        @foreach ($user->verification_items as $verification_item)
+    <div class="list">
+        @foreach ($verification_items as $verification_item)
             @if ($verification_item->type == 'Gambar')
             <div class="card-item ci-image">
-                <a class="ctn-main-font ctn-mikro" href="{{ url('/verification/review-result/'.$verification_item->id) }}">
+                <a class="ctn-main-font ctn-mikro" href="{{ url('/admin/verification/detail/'.$verification_item->id) }}">
                     <div class="top">
                         @foreach ($verification_item->verification_item_images as $verification_item_image)
                             <div class="cl-{{ $loop->iteration }}">
@@ -83,7 +38,7 @@
             @endif
             @if ($verification_item->type == 'Link')
             <div class="card-item ci-link">
-                <a href="{{ url('/verification/review-result/'.$verification_item->id) }}">
+                <a href="{{ url('/admin/verification/detail/'.$verification_item->id) }}">
                     <div class="top">
                         <div class="link ctn-main-font ctn-mikro">
                             {{ $verification_item->verification_item_link->link }}
@@ -104,8 +59,9 @@
             </div>
             @endif
         @endforeach
+
+        {{ $verification_items->links() }}
     </div>
-</div>
-{{ $user->verification_items->links() }}
+
 @endsection
 

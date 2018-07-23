@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        /**
+         * Why I need this?
+         *
+         * when I access /admin/user/delete/1 (post route) as get route
+         * even when I access it as Guest, laravel throw MethodNotAllowedHttpException.
+         * It will be better if laravel return 404.
+         */
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return abort('404');
+        }
         return parent::render($request, $exception);
     }
 }
