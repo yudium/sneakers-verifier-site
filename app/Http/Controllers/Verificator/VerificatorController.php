@@ -131,6 +131,7 @@ class VerificatorController extends Controller
 
         return view('admin/verificator-list', compact('verificators'));
     }
+
     public function create(Request $req)
     {
         if (! Auth::guard('web_admin')->check()) return view('403');
