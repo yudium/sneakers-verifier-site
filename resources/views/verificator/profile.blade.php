@@ -85,7 +85,8 @@
     </div>
     <div class="fp-right">
         @foreach ($verificator->reviews as $review)
-            <a href="{{ '/verificator/review/form/'.$review->id }}">
+            <div>
+                {{ $review->id }}
                 <div class="card-item ci-link">
                     <div class="mid">
                         <div class="ctn-main-font ctn-min-color ctn-16px">
@@ -96,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         @endforeach
     </div>
 </div>

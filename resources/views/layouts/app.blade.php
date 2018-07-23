@@ -54,9 +54,6 @@
                 <div class="mn-2">
                     <div class="menu-ctn">
                         <ul class="menu-header">
-                            <a href="{{ url('/') }}">
-                                <li>Home</li>
-                            </a>
                             <a href="{{ url('/verification/list') }}">
                                 <li>Reviewed</li>
                             </a>
