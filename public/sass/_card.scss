@@ -1,45 +1,45 @@
 .card-item {
 	position: relative;
-	width: calc(100% - 30px);
-	padding: 15px;
+	width: 100%;
 	border: 1px rgba(0,0,0,0.1) solid;
 	margin-top: 10px;
 	margin-bottom: 30px;
 	border-radius: 7px;
 	overflow: hidden;
-	&:hover {
-		background-color: rgba(225,225,225,0.34);
-	}
-	&.ci-image {
-		.top {
-			position: relative;
-			width: calc(100% - 2px);
-			border: 1px rgba(0,0,0,0.1) solid;
-			border-radius: 7px;
-			overflow: hidden;
-			cursor: pointer;
-			background-color: rgba(225,225,225,0.34);
-			@include grid_3x(1fr, 1fr, 1fr);
-			.cl-1 {
-				@include column_1();
-			}
-			.cl-2 {
-				@include column_2();
-			}
-			.cl-3 {
-				@include column_3();
-			}
-			&:hover {
-				background-color: rgba(225,225,225,0.54);
+	.top {
+		padding: 15px 15px 0 15px;
+		&.ci-image {
+			.img {
+				position: relative;
+				width: calc(100% - 2px);
+				height: 150px;
+				border: 1px rgba(0,0,0,0.1) solid;
+				border-radius: 7px;
+				overflow: hidden;
+				cursor: pointer;
+				background-color: rgba(225,225,225,0.34);
+				@include grid_3x(1fr, 1fr, 1fr);
+				.cl-1 {
+					@include column_1();
+				}
+				.cl-2 {
+					@include column_2();
+				}
+				.cl-3 {
+					@include column_3();
+				}
+				&:hover {
+					background-color: rgba(225,225,225,0.54);
+				}
 			}
 		}
-	}
-	&.ci-link {
-		.top {
+		&.ci-link {
 			.link {
 				position: relative;
 				width: calc(100% - 32px);
-				padding: 15px;
+				height: 150px;
+				padding: 0 15px;
+				overflow: hidden;
 				border-radius: 7px;
 				border: 1px rgba(0,0,0,0.1) solid;
 				background-color: rgba(225,225,225,0.34);
@@ -47,11 +47,35 @@
 				&:hover {
 					background-color: rgba(225,225,225,0.54);
 				}
+				.ttl {
+					@include post_top();
+				}
 			}
 		}
 	}
 	.mid {
-		padding: 10px 0 0 0;
+		padding: 15px;
+	}
+	.bot {
+		position: relative;
+		width: 100%;
+		height: 50px;
+		@include bdr_top();
+		.link {
+			position: relative;
+			width: 50%;
+			height: 50px;
+			line-height: 50px;
+			float: left;
+			text-align: center;
+			font-weight: 600;
+			font-size: 16px;
+			color: $min-color;
+			&:hover {
+				background-color: rgba(225,225,225,0.34);
+				color: $int-color;
+			}
+		}
 	}
 }
 
