@@ -26,7 +26,20 @@
     </script>
 </head>
 <body>
-    <div class="header"></div>
+    <div class="header">
+        <nav>
+        <ul>
+            <li><a href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
+            <li><a href="{{ route('admin.list') }}">Admin List</a></li>
+            <li><a href="{{ route('admin.create-new') }}">Admin Create New</a></li>
+            <li><a href="{{ route('admin.verification-list') }}">Verification List</a></li>
+            <li><a href="{{ route('admin.change') }}">Edit account</a></li>
+            <li><a href="{{ route('admin.user-list') }}">User List</a></li>
+            <li><a href="{{ route('admin.verificator-list') }}">Verificator List</a></li>
+            <li><a href="{{ route('admin.verificator-create') }}">Create Verificator</a></li>
+        </ul>
+        </nav>
+    </div>
     <div class="body">
         @yield('content')
     </div>
