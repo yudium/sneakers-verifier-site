@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="login-container">
-    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">{{ __('Verifivicator Login') }}</div>
+    <div class="ctn-main-font ctn-min-color ctn-standar padding-20px">{{ __('Verificator Login') }}</div>
     <div class="lc-place">
         <form action="{{ route('verificator.login') }}" method="POST">
             @csrf

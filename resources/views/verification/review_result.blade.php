@@ -3,43 +3,91 @@
 @section('title', 'Review result: #'.$verification_item->id)
 
 @section('content')
-    <div id="review-result">
-        <h3>Hasil Review</h3>
-        <p>
-            @if ($verification_item->review->status == 'Asli')
-            Reviewer menyatakan bahwa Sneakers ini <b>ASLI</b>
-            @endif
-            @if ($verification_item->review->status == 'Tidak Asli')
-            Reviewer menyatakan bahwa Sneakers ini <b>PALSU</b>
-            @endif
-            @if ($verification_item->review->status == 'Review Ditolak')
-            :( Reviewer menolak verifikasi ini (lihat pesan reviewer untuk selengkapnya.)
-            @endif
-        </p>
-        <p>
-            Pesan dari reviewer:<br>
-            {{ $verification_item->review->note OR 'tidak ada pesan' }}
-        </p>
-    </div>
+<div class="review-result">
+    <h3 class="ctn-main-font ctn-min-color ctn-standar padding-10px">
+        Review Result
+    </h3>
+    @if ($verification_item->status_review == 'Sudah Direview')
+    <div class="rr-special">
+        <div class="rr-block">
+            <div class="padding-top-15px">
+                @if ($verification_item->review->status == 'Asli')
+                    <div class="rr-status">
+                        <div class="rr-content real">
+                            <div class="icn fa fa-2x fa-check-circle"></div>
+                            <div class="ttl">REAL</div>
+                        </div>
+                    </div>
+                @endif
+                
+                @if ($verification_item->review->status == 'Tidak Asli')
+                    <div class="rr-status">
+                        <div class="rr-content fake">
+                            <div class="icn fa fa-2x fa-times"></div>
+                            <div class="ttl">FAKE</div>
+                        </div>
+                    </div>
+                @endif
 
-    <h3>Informasi Verification Item</h3>
+                @if ($verification_item->review->status == 'Review Ditolak')
+                    <div class="rr-status">
+                        <div class="rr-content reject">
+                            <div class="icn fa fa-2x fa-cog"></div>
+                            <div class="ttl">REJECT</div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="rr-block">
+            <h3 class="ctn-main-font ctn-min-color ctn-20px padding-10px">
+                Message
+            </h3>
+            <div class="ctn-main-font ctn-min-color ctn-16px">
+                {{ $verification_item->review->note OR 'There is no message' }}
+            </div>
+        </div>
+    </div>
+    @endif
+    <div class="rr-block">
+        <h3 class="ctn-main-font ctn-min-color ctn-20px padding-10px">
+            Informations
+        </h3>
+        <div>
+            <div class="ctn-main-font ctn-min-color ctn-16px">
+                Submited on: {{ $verification_item->created_at }}
+            </div>
+            <div class="ctn-main-font ctn-min-color ctn-16px">
+                Review status: {{ $verification_item->status_review }}
+            </div>
+        </div>
+    </div>
     @if ($verification_item->type == 'Gambar')
-    Berikut gambar foto sneakers terupload Anda:
-    @foreach ($verification_item->verification_item_images as $verification_item_image)
-    <img src="{{ asset('storage/verification_sneakers_images/'.$verification_item_image->path) }}" alt="Sneakers Image" width="150" height="120">
-    @endforeach
-    <div id="verification-info">
-        Tanggal upload: {{ $verification_item->created_at }}
-        Status review: {{ $verification_item->status_review }}
-    </div>
+        <div class="rr-block">
+            <h3 class="ctn-main-font ctn-min-color ctn-20px padding-10px">
+                Images
+            </h3>
+            <div class="rr-image">
+                @foreach ($verification_item->verification_item_images as $verification_item_image)
+                    <img src="{{ asset('storage/verification_sneakers_images/'.$verification_item_image->path) }}">
+                @endforeach
+            </div>
+        </div>
     @endif
-
     @if ($verification_item->type == 'Link')
-    <div class="verification-info">
-        Link: {{ $verification_item->verification_item_link->link  }}   <br>
-        Tanggal submit: {{ $verification_item->created_at }}            <br>
-        Status review: {{ $verification_item->status_review }}
-    </div>
+        <div class="rr-block">
+            <h3 class="ctn-main-font ctn-min-color ctn-20px padding-10px">
+                Link
+            </h3>
+            <a href="{{ $verification_item->verification_item_link->link }}" target="_blank">
+                <div class="rr-message">
+                    <span class="ctn-main-font ctn-min-color ctn-mikro">
+                        {{ $verification_item->verification_item_link->link }}
+                    </span>
+                </div>
+            </a>
+        </div>
     @endif
+</div>
 @endsection
 

@@ -84,10 +84,27 @@ $banner-height: calc(100vh - 120px);
 		position: relative;
 		width: 500px;
 		margin: auto;
+		&.lg-big-width {
+			width: 700px;
+		}
+		&.border {
+			border: 1px rgba(0,0,0,0.1) solid;
+			padding: 10px;
+			border-radius: 7.5px;
+		}
 		.lc-block {
 			margin-bottom: 15px;
 			.ctn-main-font {
 				margin-bottom: 5px;
+			}
+			.image-preview {
+				$img-width: (500px / 3);
+				.image {
+					width: ($img-width - 10);
+					padding-bottom: ($img-width - 10);
+					margin: 10px 5px;
+					display: inline-block;
+				}
 			}
 		}
 		.lc-right {
@@ -129,6 +146,99 @@ $banner-height: calc(100vh - 120px);
 			&.disabled {
 				color: $err-color;
 			}
+		}
+	}
+	.review-result {
+		position: relative;
+		width: 70%;
+		margin: auto;
+		//@include grid_2x(1fr, 1fr);
+		img {
+			width: 100%;
+		}
+		.rr-col-1 {
+			@include column_1();
+		}
+		.rr-col-2 {
+			@include column_2();
+		}
+		.rr-block {
+			margin-bottom: 15px;
+		}
+		.rr-special {
+			position: relative;
+			width: calc(100% - 38px);
+			padding: 10px 15px;
+			border-radius: 10px;
+			margin: 15px 0;
+			text-align: center;
+			border: 4px $sek-color dashed;
+		}
+		.rr-status {
+			position: relative;
+			width: 150px;
+			height: 150px;
+			border-radius: 10px;
+			background-color: #fff;
+			border: 4px $min-color solid;
+			margin: auto;
+			.rr-content {
+				@include post_center();
+				text-align: center;
+				&.real {
+					.icn {
+						color: $int-color;
+						border: 4px $int-color solid;
+					}
+					.ttl {
+						color: $min-color;
+					}
+				}
+				&.fake {
+					.icn {
+						color: $err-color;
+						border: 4px $err-color solid;
+					}
+					.ttl {
+						color: $min-color;
+					}
+				}
+				&.reject {
+					.icn {
+						color: $min-color;
+						border: 4px $min-color solid;
+					}
+					.ttl {
+						color: $min-color;
+					}
+				}
+				.icn {
+					position: relative;
+					width: 50px;
+					height: 50px;
+					line-height: 50px;
+					border-radius: 100%;
+				}
+				.ttl {
+					padding-top: 5px;
+					font-weight: 600;
+				}
+			}
+		}
+		.rr-message {
+			position: relative;
+			width: calc(100% - 38px);
+			padding: 15px;
+			border: 4px $min-color solid;
+			border-radius: 10px;
+			color: $min-color;
+			font-size: 16px;
+			font-weight: 600;
+			background-color: rgba(225,225,225,0.34);
+		}
+		.rr-image {
+			column-count: 4;
+			column-gap: 5px;
 		}
 	}
 }

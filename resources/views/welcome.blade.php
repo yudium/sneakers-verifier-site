@@ -133,16 +133,14 @@
                     </p>
                     <div class="padding-top-5px">
                         @if (Auth::id())
-                            <button class="btn btn-radius btn-main-color">
+                            <button class="btn btn-radius btn-main-color" onclick="opRequest('open')">
                                 <span class="fa fa-lg fa-plus-circle"></span>
                                 <span>Verification</span>
                             </button>
                         @else
-                            <a href="{{ url('/login') }}">
-                                <button class="btn btn-primary-color" style="margin-right: 10px;">
-                                    Login
-                                </button>
-                            </a>
+                            <button class="btn btn-primary-color" style="margin-right: 10px;" onclick="opLogin('open')">
+                                Login
+                            </button>
                             <a href="{{ url('/register') }}">
                                 <button class="btn btn-main-color">
                                     Register
