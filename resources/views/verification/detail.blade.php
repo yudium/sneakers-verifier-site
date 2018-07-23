@@ -53,7 +53,7 @@
         </div>
     @endif
     @if ($verification_item->status_review == 'Sudah Direview')
-    <a href="{{ action('VerificationController@showReviewResult', ['id' => $verification_item]) }}">Lihat Hasil Review</a>
+    <a id="btn-show-review-result" href="{{ action('VerificationController@showReviewResult', ['id' => $verification_item]) }}">Lihat Hasil Review</a>
     @endif
 </div>
 @endsection
