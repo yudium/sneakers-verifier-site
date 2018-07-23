@@ -51,6 +51,7 @@
                     <div class="padding-10px">
                         <div class="bdr-bottom"></div>
                     </div>
+                    @if ($verificator->id == Auth::user()->id)
                     <form method="post" action="">
                         @csrf
                         <button type="submit" class="btn btn-danger-color btn-all">
@@ -58,6 +59,21 @@
                             Delete Account
                         </button>
                     </form>
+                    @endif
+                    @if (Auth::guard('web_admin')->check())
+                    <div id="admin-panel">
+                        <form method="post" action="{{ action('Verificator\VerificatorController@delete', ['id' => $verificator->id]) }}">
+                            @csrf
+                            <button type="submit" class="btn btn-primary-color btn-all">
+                                Hapus Akun
+                            </button>
+                        </form>
+
+                        @if ($verificator->biography == '')
+                        <a href="{{ route('create_verificator_biography', ['id' => $verificator->id]) }}">Buat biografi</a>
+                        @endif
+                    </div>
+                    @endif
                 @endif
             @endif
         </div>

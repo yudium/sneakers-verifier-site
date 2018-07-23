@@ -8,9 +8,13 @@
         Biography
     </h3>
     <h2 class="ctn-main-font ctn-min-color ctn-mikro padding-10px">
-    	{{ $verificator->name }}
+        {{ $verificator->name }}
     </h2>
 
-	<p class="ctn-main-font ctn-min-color ctn-16px ctn-thin">{{ $verificator->biography }}</p>
+    @if ($verificator->biography !== '')
+        <p class="ctn-main-font ctn-min-color ctn-16px ctn-thin">{{ $verificator->biography }}</p>
+    @else
+        Tidak ada biografi
+    @endif
 </div>
 @endsection

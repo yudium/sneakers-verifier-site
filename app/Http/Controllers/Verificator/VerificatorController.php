@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Verificator;
+use Validator;
 
 class VerificatorController extends Controller
 {
@@ -103,5 +104,81 @@ class VerificatorController extends Controller
     {
         $verificator = Verificator::find($id);
         return view('verificator.biography', compact('verificator'));
+    }
+
+    public function createBiography($id)
+    {
+        $verificator = Verificator::find($id);
+        return view('admin.create-verificator-biography', compact('verificator'));
+    }
+
+    public function saveBiography(Request $req, $id)
+    {
+        $verificator = Verificator::find($id);
+        $verificator->biography = $req->post('biography');
+        $verificator->save();
+
+        return redirect('verificator/'.$id)->with([
+            'message' => 'Biography has been saved',
+            'status'  => 'SUCCESS',
+        ]);
+    }
+
+    public function all()
+    {
+        $verificators = Verificator::orderBy('created_at', 'desc');
+        $verificators = $verificators->paginate(20);
+
+        return view('admin/verificator-list', compact('verificators'));
+    }
+    public function create(Request $req)
+    {
+        if (! Auth::guard('web_admin')->check()) return view('403');
+
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:verificators',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with([
+                'message' => 'Some of your input is not valid.',
+                'status'  => 'FAIL',
+            ]);
+        }
+
+        Verificator::create([
+            'name' => $req->post('name'),
+            'email' => $req->post('email'),
+            'password' => Hash::make($req->post('password')),
+            'photo' => '',
+            'biography' => '',
+        ]);
+
+        return redirect('admin/verificator-list')->with([
+            'message' => 'New verificator has been created',
+            'status'  => 'SUCCESS',
+        ]);
+    }
+
+    public function delete(Request $req, $id)
+    {
+        if (Auth::guard('web_admin')->check()) {
+            $verificator = Verificator::withCount('reviews')->find($id);
+
+            if ($verificator->reviews_count > 0) {
+                return redirect('admin/verificator-list')->with([
+                    'message' => 'Verificator cannot be deleted because has review',
+                    'status'  => 'FAIL',
+                ]);
+            }
+
+            $verificator->delete();
+
+            return redirect('admin/verificator-list')->with([
+                'message' => 'Verificator has been deleted',
+                'status'  => 'SUCCESS',
+            ]);
+        }
     }
 }

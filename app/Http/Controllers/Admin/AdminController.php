@@ -1,49 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
+use App\Admin;
+use App\VerificationItem;
 use Validator;
-use App\User;
 
-class UserController extends Controller
+class AdminController extends Controller
 {
-    private $user;
-
-    public function __construct(UserRepository $user)
+    public function getVerificationList()
     {
-        $this->user = $user;
-    }
+        $verification_items = VerificationItem::paginate(6);
 
-    /**
-     * Show user profile page
-     *
-     */
-    public function profile($userid)
-    {
-        Log::debug('profile() is started', ['userid' => $userid]);
-        $user = $this->user->withCount([
-            'verification_items as verification_items_count',
-            'verification_items as unreviewed_verification_items_count' => function ($query) {
-                $query->where('status_review', 0);
-            },
-        ])->find($userid);
-
-        $user->verification_items = $user->verification_items()->paginate(6);
-
-        return view('user.profile', compact('user'));
+        return view('admin.verification-list', compact( 'verification_items'));
     }
 
     public function change(Request $req)
     {
-        $user = $req->user();
+        $admin = Auth::guard('web_admin')->user();
 
-        if (! Hash::check($req->post('old_password'), $user->password)) {
+        if (! Hash::check($req->post('old_password'), $admin->password)) {
             return redirect()->back()->with([
                 'message' => 'Your current password is wrong.',
                 'status' => 'FAIL',
@@ -53,14 +35,14 @@ class UserController extends Controller
         $return_message = [];
 
         // NOTE: this is not working, I don't know why.
-        //$user->name     = $req->input('name', $user->name);
-        //$user->email    = $req->input('email', $user->email);
-        $user->name     = $req->input('name') ?: $user->name;
-        $user->email    = $req->input('email') ?: $user->email;
+        //$admin->name     = $req->input('name', $admin->name);
+        //$admin->email    = $req->input('email', $admin->email);
+        $admin->name     = $req->input('name') ?: $admin->name;
+        $admin->email    = $req->input('email') ?: $admin->email;
 
         if ($req->post('new_password')) {
             if ($req->post('new_password') == $req->post('confirm_password')){
-                $user->password = Hash::make($req->post('new_password'));
+                $admin->password = Hash::make($req->post('new_password'));
             } else {
                 array_push($return_message, [
                     'message' => 'Your confirm password is wrong. But other data has been saved.',
@@ -94,16 +76,16 @@ class UserController extends Controller
             }
 
             if ($photo_valid) {
-                $old_photo_path = $user->photo_path;
+                $old_photo_path = $admin->photo_path;
                 Storage::disk('public')->delete($old_photo_path);
 
-                $req->photo->store('user_photo_profile', 'public');
+                $req->photo->store('admin_photo_profile', 'public');
                 $new_photo   = $req->photo->hashName();
-                $user->photo = $new_photo;
+                $admin->photo = $new_photo;
             }
         }
 
-        $user->save();
+        $admin->save();
 
         array_push($return_message, [
             'message' => 'Your data has been saved',
@@ -113,19 +95,8 @@ class UserController extends Controller
         return redirect()->back()->with($return_message);
     }
 
-    public function delete(Request $req, $id = null)
+    public function delete(Request $req)
     {
-        if (Auth::guard('web_admin')->check() AND $id != null) {
-            Log::debug('executed admin');
-            $user = User::find($id);
-            $user->delete();
-
-            return redirect('admin/user-list')->with([
-                'message' => 'User has been deleted',
-                'status'  => 'SUCCESS',
-            ]);
-        }
-
         $user = Auth::user();
 
         Auth::logout();
@@ -137,11 +108,36 @@ class UserController extends Controller
 
     public function all()
     {
-        if (! Auth::guard('web_admin')->check()) return view('403');
+        $admins = Admin::orderBy('created_at', 'desc');
+        $admins = $admins->paginate(20);
 
-        $users = User::orderBy('created_at', 'desc');
-        $users = $users->paginate(20);
+        return view('admin/admin-list', compact('admins'));
+    }
 
-        return view('admin/user-list', compact('users'));
+    public function create(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:admins',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with([
+                'message' => 'Some of your input is not valid.',
+                'status'  => 'FAIL',
+            ]);
+        }
+
+        Admin::create([
+            'name' => $req->post('name'),
+            'email' => $req->post('email'),
+            'password' => Hash::make($req->post('password')),
+            'photo' => '',
+        ]);
+
+        return redirect('admin/admin-list')->with([
+            'message' => 'New admin has been created',
+            'status'  => 'SUCCESS',
+        ]);
     }
 }
