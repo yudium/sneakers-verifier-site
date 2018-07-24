@@ -97,7 +97,8 @@ class VerificationController extends Controller
         }
 
         Log::debug('addVerificationRequestImagesBased() is ended');
-        // TODO: redirect pengguna ke laman detail request yang baru dibuat
+
+        return redirect()->route('public.verification.detail', ['id' => $verification_item->id]);
     }
 
     public function addVerificationRequestLinkBased(Request $req)
@@ -123,7 +124,8 @@ class VerificationController extends Controller
         }
 
         Log::debug('addVerificationRequestLinkBased ended');
-        // TODO: redirect pengguna ke laman detail request yang baru dibuat
+
+        return redirect()->route('public.verification.detail', ['id' => $verification_item->id]);
     }
 
     public function detail($id)

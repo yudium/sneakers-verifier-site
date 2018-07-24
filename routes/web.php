@@ -30,7 +30,7 @@ Route::get('/verificator/list', 'Verificator\VerificatorController@all')->name('
 Route::get('/verificator/{id}', 'Verificator\VerificatorController@profile')->name('public.verificator.profile');
 Route::get('/verificator/{id}/biography', 'Verificator\VerificatorController@showBiography')->name('show_verificator_biography');
 Route::get('/user/{id}', 'UserController@profile');
-Route::get('/verification/detail/{id}', 'VerificationController@detail');
+Route::get('/verification/detail/{id}', 'VerificationController@detail')->name('public.verification.detail');
 
 /**
  * -----------------------------------------------------------------------------
