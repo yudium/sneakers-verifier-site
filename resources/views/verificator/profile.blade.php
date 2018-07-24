@@ -86,7 +86,6 @@
     <div class="fp-right">
         @foreach ($verificator->reviews as $review)
             <div>
-                {{ $review->id }}
                 <div class="card-item ci-link">
                     <div class="mid">
                         <div class="ctn-main-font ctn-min-color ctn-16px">
