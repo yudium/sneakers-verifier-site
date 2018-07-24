@@ -132,7 +132,7 @@ class VerificationController extends Controller
         $verification_item = VerificationItem::find($id);
 
         if ($verification_item == null) {
-            return redirect()->back()->with([
+            return redirect('user/'.Auth::user()->id)->with([
                 'message' => 'Request cannot handled because the data is not found',
                 'status'  => 'FAIL',
             ]);
@@ -164,7 +164,7 @@ class VerificationController extends Controller
             // automatically delete relation record from table verification_item_images or verification_item_link
             $verification_item->delete();
 
-            return redirect()->back()->with([
+            return redirect('user/'.Auth::user()->id)->with([
                 'message' => 'Your data has been deleted',
                 'status'  => 'SUCCESS',
             ]);
