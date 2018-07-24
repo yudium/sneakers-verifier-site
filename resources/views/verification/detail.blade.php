@@ -10,7 +10,7 @@
     </div>
     @endif
     <h3 class="ctn-main-font ctn-min-color ctn-standar padding-10px">
-        Detail Verification
+        Verification Detail
     </h3>
     <div class="rr-block">
         <h3 class="ctn-main-font ctn-min-color ctn-20px padding-10px">
@@ -53,7 +53,13 @@
         </div>
     @endif
     @if ($verification_item->status_review == 'Sudah Direview')
-    <a id="btn-show-review-result" href="{{ action('VerificationController@showReviewResult', ['id' => $verification_item]) }}">Lihat Hasil Review</a>
+    <a id="btn-show-review-result" href="{{
+    action('VerificationController@showReviewResult', ['id' =>
+    $verification_item->id]) }}">Show review result</a>
+    @endif
+    @if ($verification_item->status_review == 'Belum Direview')
+    <a id="btn-cancel-verification" href="{{
+    route('verification.delete', ['id' => $verification_item->id]) }}">Cancel Verification</a>
     @endif
 </div>
 @endsection

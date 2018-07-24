@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function() {
         Route::post('new-request/image-based', 'VerificationController@addVerificationRequestImagesBased')->name('new_request_image_based');
         Route::post('link-based', 'VerificationController@addVerificationRequestLinkBased')->name('new_request_link_based');
 
-        Route::get('delete/{id}', 'VerificationController@delete');
+        Route::get('delete/{id}', 'VerificationController@delete')->name('verification.delete');
     });
 });
 

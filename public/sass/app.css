@@ -908,5 +908,19 @@ a {
     margin: 0 auto;
     margin-top: 50px;
 }
+#btn-cancel-verification {
+    display: block;
+    width: 600px;
+    line-height: 1.5px;
+    padding: 20px;
+    background: #b4274f;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 18px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
 
 /*# sourceMappingURL=app.css.map */
