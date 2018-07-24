@@ -154,7 +154,7 @@ class VerificationController extends Controller
         }
         else if (Gate::allows('delete-verification-item', $verification_item))
         {
-            if ($verification_item->review) {
+            if ($verification_item->status_review == $verification_item->getStatusReviewAttribute(VerificationItem::STATUS_REVIEWED)) {
                 return redirect()->back()->with([
                     'message' => 'Your data has been reviewed so it cannot be deleted',
                     'status'  => 'FAIL',
