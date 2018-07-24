@@ -60,6 +60,9 @@
                             <a href="{{ url('/verification/list/unreviewed') }}">
                                 <li>Unreviewed</li>
                             </a>
+                            <a href="{{ route('public.verificator.list') }}">
+                                <li>Verificators</li>
+                            </a>
                         </ul>
                     </div>
                     <div class="menu-ctn">
@@ -169,6 +172,7 @@
         </div>
     @endif
     <div class="body">
+        @include('message')
         @yield('content')
     </div>
     <div class="footer"></div>

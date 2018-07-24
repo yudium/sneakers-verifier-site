@@ -922,5 +922,16 @@ a {
     margin: 0 auto;
     margin-top: 50px;
 }
+.alert {
+    padding: 15px;
+    color: white;
+    box-sizing: border-box;
+}
+.alert-success {
+    background: #7cc52d;
+}
+.alert-fail {
+    background: #c56868;
+}
 
 /*# sourceMappingURL=app.css.map */
