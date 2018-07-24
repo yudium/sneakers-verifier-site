@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Verificator;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -129,6 +130,9 @@ class VerificatorController extends Controller
         $verificators = Verificator::orderBy('created_at', 'desc');
         $verificators = $verificators->paginate(20);
 
+        if (Route::currentRouteName() == 'public.verificator.list') {
+            return view('verificator.list', compact('verificators'));
+        }
         return view('admin/verificator-list', compact('verificators'));
     }
 
